@@ -12,6 +12,5 @@ class Roots{
 		double rootD = Math.sqrt(D);
 		boolean is0 = (D == 0);
 		System.out.println(( is0 ? ("The root is " + -b / (2*a)) : ("The roots are: " + ((-b + rootD) / (2*a)) + "and "+((-b - rootD) / (2*a)) )));
-		sc.close();
 	}
 }
