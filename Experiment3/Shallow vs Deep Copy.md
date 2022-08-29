@@ -1,0 +1,20 @@
+# Shallow vs Deep Copying
+
+## Problems With Shallow Copying
+
+### How to create a clone of an object using Cloneable interface: [See Here](../Experiment1/CloningObjects.md)
+
+[This Link][ShallowCopy] Highlights the problem with shallow copy: 
+
+> + Shallow copy is the method of copying an object and is followed by default in cloning.
+> + In this method, the fields of an old object X are copied to the new object Y. While copying the object type field the reference is copied to Y i.e object Y will point to the same location as pointed out by X.
+> + If the field value is a primitive type it copies the value of the primitive type
+
+
+Point 3 presents the problem with shallow copying:  
+Any changes made to such a copy will reflect in all other objects that were cloned which in most cases is not what we want
+Thus we create a deep copy 
+
+
+[CloneFunction]: https://www.geeksforgeeks.org/clone-method-in-java-2/#:~:text=Creating%20a%20copy%20using%20the,class%20must%20also%20implement%20java.
+[ShallowCopy]: https://www.geeksforgeeks.org/clone-method-in-java-2/#:~:text=public%20class%20Main%20%7B,300%2040%0A100%2020%20300%2040

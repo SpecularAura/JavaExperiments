@@ -1,0 +1,3 @@
+- [x] WAP to compare two numbers.
+- [] WAP to print truth table for java logical operators.
+- [] WAP to read the number & shift left & right by 3 bits

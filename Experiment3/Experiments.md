@@ -1,0 +1,6 @@
+- [x] Print the Fibonacci series upto the nth term taking the value of n from the user.
+- [x] WAP to reverse the given no.
+- [x] WAP to calculate area & circumference of circle
+- [x] WAP to swap given two strings
+- [x] WAP to convert temperature from Fahrenheit to Celsius
+- [x] WAP to find a square, square root, and Cube of a given no. using abstraction
