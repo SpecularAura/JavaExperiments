@@ -17,6 +17,5 @@ class TestPrime{
         {
             System.out.println("The number is prime");
         }
-        sc.close();
 	}
 }
