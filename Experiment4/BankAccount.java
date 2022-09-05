@@ -1,15 +1,28 @@
 import java.util.Scanner;
-class BankAccount
+/* 
+The Account class containing the following:
+Data:
+          name of the depositor - name
+          account number - accNumber
+          type of account - accType
+          balance amount in the account - balance
+Methods:
+          1.to assign initial values - createAccount
+          2.to deposit an amount - deposit
+          3.to withdraw an amount after checking balance - withdraw
+          4.to display the name & balance - accDetails
+*/
+class Account
 {
 	String name;
 	String accNumber;
-	String type;
+	String accType;
 	int balance;
-	void createAccount(String name, String accNumber, String type)
+	void createAccount(String name, String accNumber, String accType)
 	{
 		this.name = name;
 		this.accNumber = accNumber;
-		this.type = type;
+		this.accType = accType;
 		this.balance = 0;
 	}
 	void deposit(int value)
@@ -20,7 +33,7 @@ class BankAccount
 	{
 		if(value > balance)
 		{
-			System.out.println("Cannot Withdraw more than the balance");
+			System.out.println("Insufficient balance");
 		}
 		else
 		{
@@ -29,18 +42,49 @@ class BankAccount
 	}
 	void accDetails()
 	{
-		System.out.println("This account belongs to: " + name);
-		System.out.println("The balance remaining is: " + balance);
+		System.out.println("Account Holder: " + name);
+		System.out.println("Balance: " + balance);
 	}
+}
+// Demonstrating the Account Class
+class BankAccount
+{
 	public static void main(String args[])
 	{
 		Scanner sc = new Scanner(System.in);
 		BankAccount acc1 = new BankAccount();
-		System.out.println("Enter the name of the account: ");
-		String name = sc.nextLine();
-		//sc.nextInt();
-		System.out.println("Enter the account Number, and account type: ");
-		acc1.createAccount(name, sc.next(), sc.next());
-		
+		int choice;
+		boolean exit;
+		while(exit)
+		{
+			System.out.print("Select an option:\n1. Create an account\n 2. Deposit\n3. Withdraw\n4. Account Details\n  -->");
+			choice = sc.nextInt();
+			switch(choice)
+			{
+				case 1:
+					System.out.print("Enter the account holder's name: ");
+					String name = sc.nextLine();
+					System.out.print("Enter the account number: ");
+					String accNumber = sc.next();
+					System.out.print("Enter the account type: ");
+					String type = sc.nextLine();
+					acc1.createAccount(name, accNumber, type);
+					break;
+				case 2:
+					System.out.print("Enter the amount to deposit: ");
+					int amount = sc.nextInt();
+					acc1.deposit(amount);
+					break;
+				case 3:
+					System.out.print("Enter the amount to withdraw: ");
+					int amount = sc.nextInt();
+					acc1.withdraw(amount);
+					break;
+				case 4:
+					acc1.accDetails();
+				default:
+					System.out.println("Enter a valid option");
+			}
+		}		
 	}
 }
