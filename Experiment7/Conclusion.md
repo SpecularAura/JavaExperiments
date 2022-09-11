@@ -1,0 +1,1 @@
+> In a 2d array the first index is used for rows and the second index is used for columns

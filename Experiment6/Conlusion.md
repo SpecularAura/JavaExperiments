@@ -6,3 +6,5 @@ Quote from [link](https://dev.java/learn/packages/#:~:text=Copy-,The%20Static%20
 > To access members outside a package the classes in the package must be public
 
 > To class' constructor must also be declared public to be used outside the package(to be used with the new operator)
+
+> All the methods that need to be accessed outside the package must be declared public
