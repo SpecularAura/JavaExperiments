@@ -1,0 +1,1 @@
+super class must be the first statement in the call to constructor
