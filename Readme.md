@@ -55,45 +55,45 @@ WAP to implement following constructors
   b. Parameterized constructor
 
 + Program on Packages
-a. Write a Program to demonstrate user defined
+	- [] Write a Program to demonstrate user defined
 Packages.
 
 + Program on 2D array, strings functions
-a. To check if the entered matrix is symmetric or
+	- [] To check if the entered matrix is symmetric or
 not.
-b. To perform Matrix Multiplication.
-c. Reverse the string and decide whether it is
+	- [] To perform Matrix Multiplication.
+	- [] Reverse the string and decide whether it is
 palindrome or not and Capitalize the String.
-d. Program to demonstrate built-in Functions of
+	- [] Program to demonstrate built-in Functions of
 String Class.
 
 + Program on StringBuffer and Vectors
-a. Program to demonstrate built-in StringBuffer
+	- [] Program to demonstrate built-in StringBuffer
 Functions.
-b. Program to demonstrate built-in functions of
+	- [] Program to demonstrate built-in functions of
 Vector Class.
 
 + Program on types of inheritance
-a. Program to demonstrate single inheritance
-b. Program to demonstrate multilevel Inheritance
+	- [] Program to demonstrate single inheritance
+	- [] Program to demonstrate multilevel Inheritance
 (using Super keyword).
 
 + Program on Multiple Inheritance
-a. Program to demonstrate multiple Inheritance
+	- [] Program to demonstrate multiple Inheritance
 (using Interfaces).
-b. Write a program for making one base class and
+	- [] Write a program for making one base class and
 two subclasses (student is base class, music
 representative and sport representative derived
 class). Add appropriate properties and methods.
 
 + Program on abstract class and abstract methods.
-a. WAP to create an abstract class Shape with abstract
+	- [] WAP to create an abstract class Shape with abstract
 method area(), implement the same in different
 classes Rectangle, circle, triangle.
 Make appropriate use of super and final concepts in
 above program
 
-+ Program on Exception handling
+- [] Program on Exception handling  
 Write a program to use throw, finally and try-catch to handle
 exception.
 

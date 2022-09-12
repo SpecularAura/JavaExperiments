@@ -1,3 +1,4 @@
+// samplepackage/Class1.java
 package samplepackage;
 public class Class1
 {
