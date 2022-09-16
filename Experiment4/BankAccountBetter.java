@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 /* 
 The Account class containing the following:
 Data:
@@ -47,13 +48,29 @@ class Account
 	}
 }
 // Demonstrating the Account Class
-class BankAccount
+class BankAccountBetter
 {
+	public static int selectAccount(ArrayList<Account> accounts)
+	{
+		System.out.print("Select an account: ");
+		Scanner sc = new Scanner(System.in);
+		int i = 0;
+		String accNum;
+		for(Account acc : accounts)
+		{
+			accNum = acc.accNumber.substring(acc.accNumber.length() - 4);
+			System.out.println(i + ". " + acc.name + "(last 3 digits: " + accNum + ")");
+			i++;
+		}
+		int choice = sc.nextInt();
+		return choice;
+	}
 	public static void main(String args[])
 	{
 		Scanner sc = new Scanner(System.in);
+		ArrayList<Account> accounts = new ArrayList<Account>();
 		Account acc1 = new Account();
-		int choice, amount;
+		int choice, amount, accChoice, i = 0;
 		boolean exit = false;
 		while(!exit)
 		{
@@ -69,20 +86,25 @@ class BankAccount
 					String accNumber = sc.next();
 					System.out.print("Enter the account type: ");
 					String type = sc.next();
-					acc1.createAccount(name, accNumber, type);
+					accounts.add(new Account());
+					accounts.get(i).createAccount(name, accNumber, type);
+					i++;
 					break;
 				case 2:
+					accChoice = selectAccount(accounts);
 					System.out.print("Enter the amount to deposit: ");
 					amount = sc.nextInt();
-					acc1.deposit(amount);
+					accounts.get(accChoice).deposit(amount);
 					break;
 				case 3:
+					accChoice = selectAccount(accounts);
 					System.out.print("Enter the amount to withdraw: ");
 					amount = sc.nextInt();
-					acc1.withdraw(amount);
+					accounts.get(accChoice).withdraw(amount);
 					break;
 				case 4:
-					acc1.accDetails();
+					accChoice = selectAccount(accounts);
+					accounts.get(accChoice).accDetails();
 					break;
 				case 5:
 					exit = true;
