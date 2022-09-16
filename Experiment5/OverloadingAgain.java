@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.lang.String;
+import static java.lang.Math.*;
 class Shape
 {
 	String shape;
@@ -13,8 +13,9 @@ class Shape
 	}
 	double area(double dimension1, double dimension2, double dimension3)
 	{
-		double s = (dimension1 + dimension2 + dimension3) / 3;
-		return Math.sqrt(s * (s - dimension1) * (s - dimension2) * (s - dimension3));
+		double s = (dimension1 + dimension2 + dimension3) / 2;
+		double area = sqrt(s * (s - dimension1) * (s - dimension2) * (s - dimension3));
+		return area;
 	}
 	double area(double dimension1)
 	{
@@ -22,9 +23,11 @@ class Shape
 		switch(shape)
 		{
 			case "circle":
-				area = Math.PI * dimension1 * dimension1;
+				area = PI * dimension1 * dimension1;
+				break;
 			case "square":
 				area = dimension1 * dimension1;
+				break;
 			default:
 				area = 0;
 		}
@@ -34,5 +37,15 @@ class Shape
 	{
 		return dimension1 * dimension2;
 	}
-
+}
+class Overloading
+{
+	public static void main(String args[])
+	{
+		Shape shape1 = new Shape("triangle");
+		Shape shape2 = new Shape("square");
+		Shape shape3 = new Shape
+		System.out.println(shape1.area(10, 11, 10));
+		System.out.println(shape2.area(10));
+	}
 }
