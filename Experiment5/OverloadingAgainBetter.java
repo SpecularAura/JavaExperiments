@@ -24,23 +24,18 @@ class Shape
 	}
 	double area(double dimension1)
 	{
-		double result;
+		double result = 
 		switch(shape)
 		{
-			case "circle":
-				result = PI * dimension1 * dimension1;
-				break;
-			case "square":
-				result = dimension1 * dimension1;
-				break;
-			case "triangle":
-				result = area(dimension1, dimension1, dimension1);
-				break;
-			case "rectangle":
-				result = area(dimension1, dimension1);
-			default:
-				System.out.println("Your shape isn't present in the list of shapes");
-				result = 0;
+			case "circle" -> PI * dimension1 * dimension1;
+			case "square" -> dimension1 * dimension1;
+			case "triangle" -> area(dimension1, dimension1, dimension1);
+			case "rectangle" -> area(dimension1, dimension1);
+			default -> 0;
+		};
+		if(result == 0)
+		{
+			System.out.println("Cannot calculate the area for such a shape");
 		}
 		return result;
 	}

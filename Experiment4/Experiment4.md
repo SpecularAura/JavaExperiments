@@ -1,14 +1,14 @@
----
-fontsize: 12pt
+<!-- ---
+fontsize: 10pt
 geometry: left=2cm,right=0cm,top=0cm,bottom=0cm
----
-# Experiment4:
+--- -->
+Experiment4:
+===============
 
-## Code:
+**Code:**
 ```{.Java .numberLines}
 import java.util.Scanner;
-/* 
-The Account class containing the following:
+/* The Account class containing the following:
 Data:
           name of the depositor - name
           account number - accNumber
@@ -18,8 +18,7 @@ Methods:
           1.to assign initial values - createAccount
           2.to deposit an amount - deposit
           3.to withdraw an amount after checking balance - withdraw
-          4.to display the name & balance - accDetails
-*/
+          4.to display the name & balance - accDetails*/
 class Account
 {
 	String name;
@@ -65,8 +64,7 @@ class BankAccount
 		boolean exit = false;
 		while(!exit)
 		{
-			System.out.print("Select an option:\n1. Create an account\n 2. Deposit\n"
-								"3. Withdraw\n4. Account Details\n5. Exit\n  -->");
+			System.out.print("Select an option:\n1. Create an account\n2. Deposit\n3. Withdraw\n4. Account Details\n5. Exit\n  -->");
 			choice = sc.nextInt();
 			switch(choice)
 			{
@@ -104,7 +102,57 @@ class BankAccount
 }
 ```
 
-## Output: 
+**Output:** 
 ```
-
+Select an option:
+1. Create an account
+2. Deposit
+3. Withdraw
+4. Account Details
+5. Exit
+  -->1
+Enter the account holder's name: Aum Kulkarni
+Enter the account number: 856829612
+Enter the account type: Savings
+Select an option:
+1. Create an account
+2. Deposit
+3. Withdraw
+4. Account Details
+5. Exit
+  -->2
+Enter the amount to deposit: 1300
+Select an option:
+1. Create an account
+2. Deposit
+3. Withdraw
+4. Account Details
+5. Exit
+  -->3
+Enter the amount to withdraw: 1400
+Insufficient balance
+Select an option:
+1. Create an account
+2. Deposit
+3. Withdraw
+4. Account Details
+5. Exit
+  -->3
+Enter the amount to withdraw: 1200
+Select an option:
+1. Create an account
+2. Deposit
+3. Withdraw
+4. Account Details
+5. Exit
+  -->4
+Account Holder: Aum Kulkarni
+Balance: 100
+Select an option:
+1. Create an account
+2. Deposit
+3. Withdraw
+4. Account Details
+5. Exit
+  -->5
 ```

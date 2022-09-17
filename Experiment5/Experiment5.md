@@ -1,3 +1,9 @@
+---
+fontsize: 12pt
+geometry: left=3cm,right=3cm,top=2cm,bottom=2cm
+---
+**Code:**
+```{.Java .numberLines}
 import java.util.Scanner;
 import static java.lang.Math.*;
 class Shape
@@ -63,3 +69,11 @@ class Overloading
 		System.out.println("Area of Equilateral Triangle with side 10: " +shape2.area(10));
 	}
 }
+```
+**Output:**
+```
+Area of Triangle with side 10, 11 and 10: 45.934055993347684
+Area of Square with side 10: 100.0
+Area of Circle with side 10: 314.1592653589793
+Area of Equilateral Triangle with side 10: 43.30127018922193
+```

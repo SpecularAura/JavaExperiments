@@ -57,7 +57,7 @@ class BankAccount
 		boolean exit = false;
 		while(!exit)
 		{
-			System.out.print("Select an option:\n1. Create an account\n 2. Deposit\n3. Withdraw\n4. Account Details\n5. Exit\n  -->");
+			System.out.print("Select an option:\n1. Create an account\n2. Deposit\n3. Withdraw\n4. Account Details\n5. Exit\n  -->");
 			choice = sc.nextInt();
 			switch(choice)
 			{
