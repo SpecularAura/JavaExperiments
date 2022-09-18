@@ -20,6 +20,7 @@ class Symmetric
 				mat2.setElement(i, j, sc.nextInt());
 			}
 		}
+		System.out.println(mat2);
 		System.out.println("The Matrix is " + ((isSymmetric(mat2) ? "Symmetric" : "Not Symmetric")));
 	}
 }

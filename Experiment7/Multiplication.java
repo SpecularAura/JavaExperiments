@@ -11,9 +11,9 @@ class Multiplication
 		Matrix matMult = new Matrix(mat1.getRows(), mat2.getColumns());
 		for(int i=0; i < mat1.getRows(); i++)
 		{
-			for(int j=0; j < mat1.getColumns(); j++)
+			for(int j=0; j < mat2.getColumns(); j++)
 			{
-				for(int k = 0; k < mat1.getColumns(); k++)
+				for(int k = 0; k < mat2.getRows(); k++)
 				{
 					matMult.setElement(i, j, matMult.elementAt(i, j) + mat1.elementAt(i, k) * mat2.elementAt(k, j));
 				}
@@ -36,6 +36,7 @@ class Multiplication
 		columns = sc.nextInt();
 		Matrix mat2 = new Matrix(rows, columns);
 		mat2.setMatrix();
+		System.out.println("mat1 x mat2 = ");
 		System.out.print(multiply(mat1, mat2));
 	}
 }
