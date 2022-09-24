@@ -2,4 +2,4 @@
 *.aux
 *.synctex.gz
 *.log
--minted-*
+**/_minted-*/
