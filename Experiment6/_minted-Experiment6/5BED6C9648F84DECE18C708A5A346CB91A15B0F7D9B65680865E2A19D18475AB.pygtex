@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{g+go}{Hello From Class1 from package1}
-\PYG{g+go}{Hello From Class2 from package1}
-\PYG{g+go}{Hello From Class3 from package1}
-\PYG{g+go}{Hello From ClassA from package2}
-\PYG{g+go}{Hello From Class1 from package3}
-\end{Verbatim}
