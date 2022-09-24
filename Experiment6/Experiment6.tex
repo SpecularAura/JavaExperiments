@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage[left=2cm,
+            right=1cm,
+            top=1cm,
+            bottom=1cm]{geometry}
+\usepackage{minted}
+\setmainfont{Times New Roman}
+\setmonofont{Consolas}
+\renewcommand{\theFancyVerbLine}{\sffamily
+\textcolor[rgb]{0.5,0.5,1.0}{\scriptsize
+\oldstylenums{\arabic{FancyVerbLine}}}}
+
+\newmintedfile{Java}{breaklines, breakanywhere, tabsize=2, obeytabs, linenos}
+\begin{document}
+\hfill \break
+{\huge\textbf{Name:}} {\huge Aum Kulkarni}\newline
+\hfill \break
+{\huge\textbf{Roll No:} 36}\newline
+\hfill \break
+{\huge\textbf{Div:} D6AD}\newline
+\hfill \break
+{\huge\textbf{Experiment No:} 6}\newline
+\hfill \break
+{\huge\textbf{Experiment Title:} Program on Packages:\newline
+Write a Program to demonstrate user defined Packages}
+
+\newpage
+Directory Structure:
+\begin{minted}{Console}
+D:\JAVACODE\EXPERIMENTS\EXPERIMENT6
+├───package1
+└───package2
+    └───packageA
+\end{minted}
+\textbf{Code:}
+\Javafile{package1/Class1.java}\hfill \break
+\Javafile{package1/Class2.java}\hfill \break
+\Javafile{package1/Class3.java}\hfill \break
+\Javafile{package2/ClassA.java}\hfill \break
+\newpage
+\Javafile{package2/packageA/Class1.java}\hfill \break
+\Javafile{SampleClass.java}
+
+\textbf{Output:}
+\begin{minted}{Console}
+Hello From Class1 from package1
+Hello From Class2 from package1
+Hello From Class3 from package1
+Hello From ClassA from package2
+Hello From Class1 from package3
+\end{minted}
+\end{document}

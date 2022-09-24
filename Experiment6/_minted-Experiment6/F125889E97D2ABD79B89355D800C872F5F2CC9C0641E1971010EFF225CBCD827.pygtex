@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// package1/Class2.java}
+\PYG{k+kn}{package}\PYG{+w}{ }\PYG{n+nn}{package1}\PYG{p}{;}
+\PYG{k+kd}{public}\PYG{+w}{ }\PYG{k+kd}{class} \PYG{n+nc}{Class2}
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{	}\PYG{k+kd}{public}\PYG{+w}{ }\PYG{n+nf}{Class2}\PYG{p}{()}
+\PYG{+w}{	}\PYG{p}{\PYGZob{}}
+\PYG{+w}{		}\PYG{n}{System}\PYG{p}{.}\PYG{n+na}{out}\PYG{p}{.}\PYG{n+na}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Hello From Class2 from package1\PYGZdq{}}\PYG{p}{);}
+\PYG{+w}{	}\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
