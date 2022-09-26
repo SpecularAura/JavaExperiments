@@ -2,7 +2,6 @@ interface Representative
 {
 	void annnounce(String str);
 	void inform(String str);
-	
 }
 
 class Student
@@ -10,8 +9,9 @@ class Student
 	String name;
 	String division;
 	int year;
+	int attendance;
 	int rollNo;
-	int result;
+	double result;
 	public Student()
 	{
 		name = null;
@@ -27,12 +27,26 @@ class Student
 		this.year = year;
 		this.division = division;
 	}
+	int sum(int[] arr)
+	{
+		int sum = 0;
+		for(int num : arr)
+		{
+			sum += num;
+		}
+		return sum
+	}
+	double percentage(int[] arr, int total)
+	{
+		return (sum(arr) / total);
+	}
 	public void setResult(int[] marks)
 	{
+		result = percentage(marks, 500);
 	}
-	public void study()
+	public void study(int hours)
 	{
-		
+		System.out.println(name + "Has studies for " + hours + "hours");
 	}
 	public int getResult()
 	{
