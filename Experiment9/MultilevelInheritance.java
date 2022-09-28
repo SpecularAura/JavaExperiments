@@ -25,7 +25,7 @@ class Rectangle extends Polygon
 		System.out.println("Rectangle Contructor is called");
 	}
 }
-class MuiltipleInheritance
+class MultiLevelInheritance
 {
 	public static void main(String args[])
 	{

@@ -115,7 +115,7 @@ To demonstrate Graphics, Font and Color class. Make a
 2. Traffic Signal
 3. Joker face
 
-+ Program on applet class
+- [] Program on applet class
 a. Program to Pass Parameters to an applet.
 
 + Program to create GUI application
