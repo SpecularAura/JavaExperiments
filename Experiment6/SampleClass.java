@@ -11,5 +11,10 @@ class SampleClass
 		Class3 c3 = new Class3();
 		ClassA cA = new ClassA();
 		package2.packageA.Class1 c31 = new package2.packageA.Class1();
+		{
+			{
+				
+			}
+		}
 	}
 }

@@ -1,15 +1,28 @@
 \documentclass{article}
 \usepackage{fontspec}
+\usepackage{xcolor}
 \usepackage[left=2cm,
-            right=1cm,
-            top=1cm,
-            bottom=1cm]{geometry}
+right=1cm,
+top=1cm,
+bottom=2cm]{geometry}
 \usepackage{minted}
+\usepackage{fvextra}
+
+\fvset{breaklines=true, breakanywhere=true}
+\renewcommand{\theFancyVerbLine}{\textcolor[rgb]{0.0,0.0,0.0}{\linenums\arabic{FancyVerbLine}}}
 \setmainfont{Times New Roman}
 \setmonofont{Consolas}
-\renewcommand{\theFancyVerbLine}{\textcolor[rgb]{0.1,0.1,1.0}{\huge\arabic{FancyVerbLine}}}
-
-\newmintedfile{Java}{breaklines, breakanywhere, tabsize=2, obeytabs, linenos}
+\newfontfamily\consolecode{Times New Roman}[NFSSFamily=ArialFamily]
+\newfontfamily\JavaCode{Consolas}[NFSSFamily=LatinModern]
+\newfontfamily\linenums{Consolas}
+\definecolor{mycolor1}{rgb}{0.5, 0.5, 0.5}
+\newmintedfile{Java}{
+    breaklines, breakanywhere, 
+    tabsize=2, obeytabs, 
+    linenos,
+    fontfamily=LatinModern, fontsize=\large,
+    frame=leftline, numbersep=2pt, framesep=8pt, 
+    rulecolor=\color{mycolor1}}
 \begin{document}
 \hfill \break
 {\huge\textbf{Name:}} {\huge Aum Kulkarni}\newline
@@ -25,7 +38,7 @@ Write a Program to demonstrate user defined Packages}
 
 \newpage
 Directory Structure:
-\begin{minted}{Console}
+\begin{minted}[fontfamily=ArialFamily]{Console}
 D:\JAVACODE\EXPERIMENTS\EXPERIMENT6
 ├───package1
 └───package2
@@ -36,9 +49,30 @@ D:\JAVACODE\EXPERIMENTS\EXPERIMENT6
 \Javafile{package1/Class2.java}\hfill \break
 \Javafile{package1/Class3.java}\hfill \break
 \Javafile{package2/ClassA.java}\hfill \break
-\newpage
 \Javafile{package2/packageA/Class1.java}\hfill \break
 \Javafile{SampleClass.java}
+\begin{minted}[
+    tabsize=2, 
+    linenos,
+    fontfamily=LatinModern, fontsize=\large,
+    frame=leftline, numbersep=2pt, framesep=8pt, 
+    rulecolor=\color{mycolor1}]{Java}
+    // SampleClass.java
+    import package1.*;
+    import package2.ClassA;
+    import package2.packageA.*;
+    class SampleClass
+    {
+        public static void main(String args[])
+        {
+            package1.Class1 c1 = new package1.Class1();
+            Class2 c2 = new Class2();
+            Class3 c3 = new Class3();
+            ClassA cA = new ClassA();
+            package2.packageA.Class1 c31 = new package2.packageA.Class1();
+        }
+    }
+\end{minted}
 
 \textbf{Output:}
 \begin{minted}{Console}

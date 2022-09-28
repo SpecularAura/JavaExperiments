@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+\usepackage[left=2cm,
+            right=1cm,
+            top=1cm,
+            bottom=2cm]{geometry}
+\usepackage{minted}
+\setmainfont{Times New Roman}
+\setmonofont{Latin Modern Mono}
+\newfontfamily\consolecode{Times New Roman}[NFSSFamily=ArialFamily]
+\newfontfamily\JavaCode{Latin Modern Mono}[NFSSFamily=LatinModern]
+\newfontfamily\linenums{Consolas}
+\renewcommand{\theFancyVerbLine}{\textcolor[rgb]{0.0,0.0,0.0}{\linenums\arabic{FancyVerbLine}}}
+\definecolor{mycolor1}{rgb}{0.738, 0.738, 0.738}
+\begin{document}
+\begin{Verbatim}[minted options={}]
+
+\end{Verbatim}
+\end{document}

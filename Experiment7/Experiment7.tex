@@ -1,0 +1,427 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  12pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, frame=leftline}
+\renewcommand{\theFancyVerbLine}{\textcolor[rgb]{0.0,0.0,0.0}{\arabic{FancyVerbLine}}}
+\fvset{breaklines=true, breakanywhere=true}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+Program to demonstrate Built-in functions of String Class \textbf{Code:}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\KeywordTok{import} \ImportTok{java}\OperatorTok{.}\ImportTok{util}\OperatorTok{.}\ImportTok{Scanner}\OperatorTok{;}
+\KeywordTok{class}\NormalTok{ StringFunctions}
+\OperatorTok{\{}
+    \KeywordTok{public} \DataTypeTok{static} \DataTypeTok{void} \FunctionTok{main}\OperatorTok{(}\BuiltInTok{String}\NormalTok{ args}\OperatorTok{[])}
+    \OperatorTok{\{}
+        \BuiltInTok{String}\NormalTok{ str1 }\OperatorTok{=} \StringTok{"    Hello"}\OperatorTok{;}
+        \BuiltInTok{String}\NormalTok{ str2 }\OperatorTok{=} \StringTok{"World"}\OperatorTok{;}
+        \BuiltInTok{String}\NormalTok{ str3 }\OperatorTok{=} \StringTok{"From Java"}\OperatorTok{;}
+        \BuiltInTok{String}\NormalTok{ str4 }\OperatorTok{=} \StringTok{"In Java"}\OperatorTok{;}
+        \BuiltInTok{String}\NormalTok{ str5 }\OperatorTok{=}\NormalTok{ str3}\OperatorTok{.}\FunctionTok{concat}\OperatorTok{(}\StringTok{" "}\OperatorTok{).}\FunctionTok{concat}\OperatorTok{(}\NormalTok{str4}\OperatorTok{);}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"Returns 0 if str1 == }\SpecialCharTok{\textbackslash{}"}\StringTok{Hello}\SpecialCharTok{\textbackslash{}"}\StringTok{: "} \OperatorTok{+}\NormalTok{ str1}\OperatorTok{.}\FunctionTok{compareTo}\OperatorTok{(}\StringTok{"Hello"}\OperatorTok{));} \CommentTok{// compareTo()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"str1 == }\SpecialCharTok{\textbackslash{}"}\StringTok{Hello}\SpecialCharTok{\textbackslash{}"}\StringTok{: "} \OperatorTok{+}\NormalTok{ str1}\OperatorTok{.}\FunctionTok{equals}\OperatorTok{(}\StringTok{"Hello"}\OperatorTok{));}        \CommentTok{// equals()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(} \StringTok{"str1 == }\SpecialCharTok{\textbackslash{}"}\StringTok{Hello}\SpecialCharTok{\textbackslash{}"}\StringTok{ After trimming: "} \OperatorTok{+}\NormalTok{ str1}\OperatorTok{.}\FunctionTok{trim}\OperatorTok{().}\FunctionTok{equals}\OperatorTok{(}\StringTok{"Hello"}\OperatorTok{));} \CommentTok{// trim()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"str2.compareToIgnoreCase(}\SpecialCharTok{\textbackslash{}"}\StringTok{world}\SpecialCharTok{\textbackslash{}"}\StringTok{): "} \OperatorTok{+}\NormalTok{ str2}\OperatorTok{.}\FunctionTok{compareToIgnoreCase}\OperatorTok{(}\StringTok{"world"}\OperatorTok{));}\CommentTok{// compareToIgnoreCase()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"Compare str2.toLowerCase() and }\SpecialCharTok{\textbackslash{}"}\StringTok{World}\SpecialCharTok{\textbackslash{}"}\StringTok{ ignoring the case: "} \OperatorTok{+}\NormalTok{ str2}\OperatorTok{.}\FunctionTok{toLowerCase}\OperatorTok{().}\FunctionTok{equalsIgnoreCase}\OperatorTok{(}\StringTok{"World"}\OperatorTok{));}\CommentTok{// toLowerCase() \& equalsIgnoreCase()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"str3.toUpperCase(): "} \OperatorTok{+}\NormalTok{ str3}\OperatorTok{.}\FunctionTok{toUpperCase}\OperatorTok{());} \CommentTok{// toUpperCase()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"Replace First occurence of }\SpecialCharTok{\textbackslash{}"}\StringTok{Java}\SpecialCharTok{\textbackslash{}"}\StringTok{ with }\SpecialCharTok{\textbackslash{}"}\StringTok{Command Prompt}\SpecialCharTok{\textbackslash{}"}\StringTok{: "}\OperatorTok{+}\NormalTok{ str5}\OperatorTok{.}\FunctionTok{replaceFirst}\OperatorTok{(}\StringTok{"Java"}\OperatorTok{,} \StringTok{"Command Prompt"}\OperatorTok{));} \CommentTok{// replaceFirst()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"Replace All occurences of }\SpecialCharTok{\textbackslash{}"}\StringTok{Java}\SpecialCharTok{\textbackslash{}"}\StringTok{ with }\SpecialCharTok{\textbackslash{}"}\StringTok{Command Prompt}\SpecialCharTok{\textbackslash{}"}\StringTok{: "} \OperatorTok{+}\NormalTok{ str5}\OperatorTok{.}\FunctionTok{replaceAll}\OperatorTok{(}\StringTok{"Java"}\OperatorTok{,} \StringTok{"Command Prompt"}\OperatorTok{));} \CommentTok{// replaceAll()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"Does str5.replaceAll(}\SpecialCharTok{\textbackslash{}"}\StringTok{Java}\SpecialCharTok{\textbackslash{}"}\StringTok{, }\SpecialCharTok{\textbackslash{}"}\StringTok{Command Prompt}\SpecialCharTok{\textbackslash{}"}\StringTok{) contains }\SpecialCharTok{\textbackslash{}"}\StringTok{Java}\SpecialCharTok{\textbackslash{}"}\StringTok{: "}\OperatorTok{+}\NormalTok{ str5}\OperatorTok{.}\FunctionTok{replaceAll}\OperatorTok{(}\StringTok{"Java"}\OperatorTok{,} \StringTok{"Command Prompt"}\OperatorTok{).}\FunctionTok{contains}\OperatorTok{(}\StringTok{"Java"}\OperatorTok{));} \CommentTok{// contains()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"str5 ends with }\SpecialCharTok{\textbackslash{}"}\StringTok{Java}\SpecialCharTok{\textbackslash{}"}\StringTok{: "} \OperatorTok{+}\NormalTok{ str5}\OperatorTok{.}\FunctionTok{endsWith}\OperatorTok{(}\StringTok{"Java"}\OperatorTok{));} \CommentTok{// endsWith()}
+        \BuiltInTok{StringBuilder}\NormalTok{ s }\OperatorTok{=} \KeywordTok{new} \BuiltInTok{StringBuilder}\OperatorTok{(}\NormalTok{str3}\OperatorTok{);} \CommentTok{// For using contentEquals which takes a CharSequence parameter}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"Content of s equals content of str3: "} \OperatorTok{+}\NormalTok{ str3}\OperatorTok{.}\FunctionTok{contentEquals}\OperatorTok{(}\NormalTok{s}\OperatorTok{));} \CommentTok{// contentEquals()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}"\textbackslash{}"}\StringTok{ is empty: "} \OperatorTok{+} \StringTok{""}\OperatorTok{.}\FunctionTok{isEmpty}\OperatorTok{());} \CommentTok{// isEmpty()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"Replace first occurence of I with O in str4: "} \OperatorTok{+}\NormalTok{ str4}\OperatorTok{.}\FunctionTok{replace}\OperatorTok{(}\CharTok{\textquotesingle{}I\textquotesingle{}}\OperatorTok{,} \CharTok{\textquotesingle{}O\textquotesingle{}}\OperatorTok{));} \CommentTok{// replace()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"Length of str5: "} \OperatorTok{+}\NormalTok{ str5}\OperatorTok{.}\FunctionTok{length}\OperatorTok{());} \CommentTok{// length()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"Character at index 3 in str5: "} \OperatorTok{+}\NormalTok{ str5}\OperatorTok{.}\FunctionTok{charAt}\OperatorTok{(}\DecValTok{3}\OperatorTok{));} \CommentTok{// charAt()}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"Substring of str5 from the index of where }\SpecialCharTok{\textbackslash{}"}\StringTok{Java}\SpecialCharTok{\textbackslash{}"}\StringTok{ is found: "} \OperatorTok{+}\NormalTok{ str5}\OperatorTok{.}\FunctionTok{substring}\OperatorTok{(}\NormalTok{str5}\OperatorTok{.}\FunctionTok{indexOf}\OperatorTok{(}\StringTok{"Java"}\OperatorTok{)));} \CommentTok{// substring()}
+        \DataTypeTok{char}\NormalTok{ arr}\OperatorTok{[]} \OperatorTok{=}\NormalTok{ str1}\OperatorTok{.}\FunctionTok{toCharArray}\OperatorTok{();} \CommentTok{// toCharArray()}
+        \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}}\NormalTok{ arr}\OperatorTok{.}\FunctionTok{length}\OperatorTok{;}\NormalTok{ i}\OperatorTok{++)}
+        \OperatorTok{\{}
+            \ControlFlowTok{if}\OperatorTok{(}\NormalTok{arr}\OperatorTok{[}\NormalTok{i}\OperatorTok{]} \OperatorTok{==} \CharTok{\textquotesingle{} \textquotesingle{}}\OperatorTok{)}
+            \OperatorTok{\{}
+\NormalTok{                arr}\OperatorTok{[}\NormalTok{i}\OperatorTok{]} \OperatorTok{=} \CharTok{\textquotesingle{}\_\textquotesingle{}}\OperatorTok{;}
+            \OperatorTok{\}}
+        \OperatorTok{\}}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{print}\OperatorTok{(}\StringTok{"Replacing spaces with underscore in arr: "}\OperatorTok{);}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{print}\OperatorTok{(}\NormalTok{arr}\OperatorTok{);}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Output:}
+
+\begin{verbatim}
+Returns 0 if str1 == "Hello": -40
+str1 == "Hello": false
+str1 == "Hello" After trimming: true
+str2.compareToIgnoreCase("world"): 0
+Compare str2.toLowerCase() and "World" ignoring the case: true
+str3.toUpperCase: FROM JAVA
+Replace First occurence of "Java" with "Command Prompt": From Command Prompt In Java
+Replace All occurences of "Java" with "Command Prompt": From Command Prompt In Command Prompt
+Does str5.replaceAll("Java", "Command Prompt") contains "Java": false
+str5 ends with "Java": true
+Content of s equals content of str3: true
+"" is empty: true
+Replace first occurence of I with O in str4: On Java
+Length of str5: 17
+Character at index 3 in str5: m
+Substring of str5 from the index of where "Java" is found: Java In Java
+Replacing spaces with underscore in arr: ____Hello
+\end{verbatim}
+
+Matrix Class:
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\CommentTok{// matrix/Matrix.java}
+\KeywordTok{package}\ImportTok{ matrix}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{java}\OperatorTok{.}\ImportTok{util}\OperatorTok{.}\ImportTok{Scanner}\OperatorTok{;}
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ Matrix}
+\OperatorTok{\{}
+    \DataTypeTok{int}\NormalTok{ arr}\OperatorTok{[][];}
+    \DataTypeTok{int}\NormalTok{ rows}\OperatorTok{,}\NormalTok{ columns}\OperatorTok{;}
+    \KeywordTok{public} \FunctionTok{Matrix}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ rows}\OperatorTok{,} \DataTypeTok{int}\NormalTok{ columns}\OperatorTok{)}
+    \OperatorTok{\{}
+\NormalTok{        arr }\OperatorTok{=} \KeywordTok{new} \DataTypeTok{int}\OperatorTok{[}\NormalTok{rows}\OperatorTok{][}\NormalTok{columns}\OperatorTok{];}
+        \KeywordTok{this}\OperatorTok{.}\FunctionTok{rows} \OperatorTok{=}\NormalTok{ rows}\OperatorTok{;}
+        \KeywordTok{this}\OperatorTok{.}\FunctionTok{columns} \OperatorTok{=}\NormalTok{ columns}\OperatorTok{;}
+    \OperatorTok{\}}
+    \KeywordTok{public} \FunctionTok{Matrix}\OperatorTok{()}
+    \OperatorTok{\{}
+\NormalTok{        arr }\OperatorTok{=} \KeywordTok{new} \DataTypeTok{int}\OperatorTok{[}\DecValTok{2}\OperatorTok{][}\DecValTok{2}\OperatorTok{];}
+\NormalTok{        rows }\OperatorTok{=} \DecValTok{2}\OperatorTok{;}
+\NormalTok{        columns }\OperatorTok{=} \DecValTok{2}\OperatorTok{;}
+    \OperatorTok{\}}
+    \KeywordTok{public} \DataTypeTok{int} \FunctionTok{elementAt}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ row}\OperatorTok{,} \DataTypeTok{int}\NormalTok{ column}\OperatorTok{)}
+    \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ arr}\OperatorTok{[}\NormalTok{row}\OperatorTok{][}\NormalTok{column}\OperatorTok{];}
+    \OperatorTok{\}}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{setElement}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ row}\OperatorTok{,} \DataTypeTok{int}\NormalTok{ column}\OperatorTok{,} \DataTypeTok{int}\NormalTok{ data}\OperatorTok{)}
+    \OperatorTok{\{}
+\NormalTok{        arr}\OperatorTok{[}\NormalTok{row}\OperatorTok{][}\NormalTok{column}\OperatorTok{]} \OperatorTok{=}\NormalTok{ data}\OperatorTok{;}
+    \OperatorTok{\}}
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{setMatrix}\OperatorTok{()}
+    \OperatorTok{\{}
+        \BuiltInTok{Scanner}\NormalTok{ sc }\OperatorTok{=} \KeywordTok{new} \BuiltInTok{Scanner}\OperatorTok{(}\BuiltInTok{System}\OperatorTok{.}\FunctionTok{in}\OperatorTok{);}
+        \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}}\NormalTok{ rows}\OperatorTok{;}\NormalTok{ i}\OperatorTok{++)}
+        \OperatorTok{\{}
+            \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ j }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ j }\OperatorTok{\textless{}}\NormalTok{ columns}\OperatorTok{;}\NormalTok{ j}\OperatorTok{++)}
+            \OperatorTok{\{}
+                \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{print}\OperatorTok{(}\StringTok{"mat["} \OperatorTok{+}\NormalTok{ i }\OperatorTok{+}\StringTok{"]"} \OperatorTok{+} \StringTok{"["} \OperatorTok{+}\NormalTok{ j }\OperatorTok{+} \StringTok{"]: "}\OperatorTok{);}
+                \KeywordTok{this}\OperatorTok{.}\FunctionTok{setElement}\OperatorTok{(}\NormalTok{i}\OperatorTok{,}\NormalTok{ j}\OperatorTok{,}\NormalTok{ sc}\OperatorTok{.}\FunctionTok{nextInt}\OperatorTok{());}
+            \OperatorTok{\}}
+        \OperatorTok{\}}
+    \OperatorTok{\}}
+    \KeywordTok{public} \BuiltInTok{String} \FunctionTok{toString}\OperatorTok{()}
+    \OperatorTok{\{}
+        \BuiltInTok{StringBuilder}\NormalTok{ str }\OperatorTok{=} \KeywordTok{new} \BuiltInTok{StringBuilder}\OperatorTok{();}
+        \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ i}\OperatorTok{=}\DecValTok{0}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}}\NormalTok{ rows}\OperatorTok{;}\NormalTok{ i}\OperatorTok{++)}
+        \OperatorTok{\{}
+            \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ j }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ j }\OperatorTok{\textless{}}\NormalTok{ columns}\OperatorTok{;}\NormalTok{ j}\OperatorTok{++)}
+            \OperatorTok{\{}
+\NormalTok{                str}\OperatorTok{.}\FunctionTok{append}\OperatorTok{(}\KeywordTok{this}\OperatorTok{.}\FunctionTok{elementAt}\OperatorTok{(}\NormalTok{i}\OperatorTok{,}\NormalTok{ j}\OperatorTok{));}
+\NormalTok{                str}\OperatorTok{.}\FunctionTok{append}\OperatorTok{(}\CharTok{\textquotesingle{} \textquotesingle{}}\OperatorTok{);}
+            \OperatorTok{\}}
+\NormalTok{            str}\OperatorTok{.}\FunctionTok{append}\OperatorTok{(}\CharTok{\textquotesingle{}\textbackslash{}n\textquotesingle{}}\OperatorTok{);}
+        \OperatorTok{\}}
+        \ControlFlowTok{return}\NormalTok{ str}\OperatorTok{.}\FunctionTok{toString}\OperatorTok{();}
+    \OperatorTok{\}}
+
+    \KeywordTok{public}\NormalTok{ Matrix }\FunctionTok{transpose}\OperatorTok{()}
+    \OperatorTok{\{}
+\NormalTok{        Matrix matTranspose }\OperatorTok{=} \KeywordTok{new} \FunctionTok{Matrix}\OperatorTok{(}\NormalTok{rows}\OperatorTok{,}\NormalTok{ columns}\OperatorTok{);}
+        \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}}\NormalTok{ rows}\OperatorTok{;}\NormalTok{ i}\OperatorTok{++)}
+        \OperatorTok{\{}
+            \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ j }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ j }\OperatorTok{\textless{}}\NormalTok{ columns}\OperatorTok{;}\NormalTok{ j}\OperatorTok{++)}
+            \OperatorTok{\{}
+\NormalTok{                matTranspose}\OperatorTok{.}\FunctionTok{setElement}\OperatorTok{(}\NormalTok{i}\OperatorTok{,}\NormalTok{ j}\OperatorTok{,} \KeywordTok{this}\OperatorTok{.}\FunctionTok{elementAt}\OperatorTok{(}\NormalTok{j}\OperatorTok{,}\NormalTok{ i}\OperatorTok{));}
+            \OperatorTok{\}}
+        \OperatorTok{\}}
+        \ControlFlowTok{return}\NormalTok{ matTranspose}\OperatorTok{;}
+    \OperatorTok{\}}
+
+    \KeywordTok{public} \DataTypeTok{boolean} \FunctionTok{equals}\OperatorTok{(}\NormalTok{Matrix mat}\OperatorTok{)}
+    \OperatorTok{\{}
+        \ControlFlowTok{if}\OperatorTok{(}\NormalTok{ rows }\OperatorTok{!=}\NormalTok{ mat}\OperatorTok{.}\FunctionTok{columns} \OperatorTok{||}\NormalTok{ columns }\OperatorTok{!=}\NormalTok{ mat}\OperatorTok{.}\FunctionTok{columns}\OperatorTok{)}
+        \OperatorTok{\{}
+            \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{print}\OperatorTok{(}\StringTok{"Cannot Compare these matrices"}\OperatorTok{);}
+        \OperatorTok{\}}
+        \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}}\NormalTok{ rows}\OperatorTok{;}\NormalTok{ i}\OperatorTok{++)}
+        \OperatorTok{\{}
+            \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ j }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ j }\OperatorTok{\textless{}}\NormalTok{ columns}\OperatorTok{;}\NormalTok{ j}\OperatorTok{++)}
+            \OperatorTok{\{}
+                \ControlFlowTok{if}\OperatorTok{(}\KeywordTok{this}\OperatorTok{.}\FunctionTok{elementAt}\OperatorTok{(}\NormalTok{i}\OperatorTok{,}\NormalTok{ j}\OperatorTok{)} \OperatorTok{!=}\NormalTok{ mat}\OperatorTok{.}\FunctionTok{elementAt}\OperatorTok{(}\NormalTok{i}\OperatorTok{,}\NormalTok{ j}\OperatorTok{))}
+                \OperatorTok{\{}
+                    \ControlFlowTok{return} \KeywordTok{false}\OperatorTok{;}
+                \OperatorTok{\}}
+            \OperatorTok{\}}
+        \OperatorTok{\}}
+        \ControlFlowTok{return} \KeywordTok{true}\OperatorTok{;}
+    \OperatorTok{\}}
+
+    \KeywordTok{public} \DataTypeTok{int} \FunctionTok{getColumns}\OperatorTok{()}
+    \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ columns}\OperatorTok{;}
+    \OperatorTok{\}}
+
+    \KeywordTok{public} \DataTypeTok{int} \FunctionTok{getRows}\OperatorTok{()}
+    \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ rows}\OperatorTok{;}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+To check if the entered matrix is symmetric or not \textbf{Code:}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\CommentTok{// Symmetric.java}
+\KeywordTok{import} \ImportTok{java}\OperatorTok{.}\ImportTok{util}\OperatorTok{.}\ImportTok{Scanner}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{matrix}\OperatorTok{.}\ImportTok{Matrix}\OperatorTok{;}
+\KeywordTok{class}\NormalTok{ Symmetric}
+\OperatorTok{\{}
+    \DataTypeTok{static} \DataTypeTok{boolean} \FunctionTok{isSymmetric}\OperatorTok{(}\NormalTok{Matrix mat}\OperatorTok{)}
+    \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ mat}\OperatorTok{.}\FunctionTok{equals}\OperatorTok{(}\NormalTok{mat}\OperatorTok{.}\FunctionTok{transpose}\OperatorTok{());}
+    \OperatorTok{\}}
+    \KeywordTok{public} \DataTypeTok{static} \DataTypeTok{void} \FunctionTok{main}\OperatorTok{(}\BuiltInTok{String}\NormalTok{ args}\OperatorTok{[])}
+    \OperatorTok{\{}
+        \BuiltInTok{Scanner}\NormalTok{ sc }\OperatorTok{=} \KeywordTok{new} \BuiltInTok{Scanner}\OperatorTok{(}\BuiltInTok{System}\OperatorTok{.}\FunctionTok{in}\OperatorTok{);}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{print}\OperatorTok{(}\StringTok{"Enter the order of the Matrix: "}\OperatorTok{);}
+        \DataTypeTok{int}\NormalTok{ order }\OperatorTok{=}\NormalTok{ sc}\OperatorTok{.}\FunctionTok{nextInt}\OperatorTok{();}
+\NormalTok{        Matrix mat2 }\OperatorTok{=} \KeywordTok{new} \FunctionTok{Matrix}\OperatorTok{(}\NormalTok{order}\OperatorTok{,}\NormalTok{ order}\OperatorTok{);}
+        \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}}\NormalTok{ order}\OperatorTok{;}\NormalTok{ i}\OperatorTok{++)}
+        \OperatorTok{\{}
+            \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ j }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ j }\OperatorTok{\textless{}}\NormalTok{ order}\OperatorTok{;}\NormalTok{ j}\OperatorTok{++)}
+            \OperatorTok{\{}
+                \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{print}\OperatorTok{(}\StringTok{"mat["} \OperatorTok{+}\NormalTok{ i }\OperatorTok{+}\StringTok{"]"} \OperatorTok{+} \StringTok{"["} \OperatorTok{+}\NormalTok{ j }\OperatorTok{+} \StringTok{"]: "}\OperatorTok{);}
+\NormalTok{                mat2}\OperatorTok{.}\FunctionTok{setElement}\OperatorTok{(}\NormalTok{i}\OperatorTok{,}\NormalTok{ j}\OperatorTok{,}\NormalTok{ sc}\OperatorTok{.}\FunctionTok{nextInt}\OperatorTok{());}
+            \OperatorTok{\}}
+        \OperatorTok{\}}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\NormalTok{mat2}\OperatorTok{);}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"The Matrix is "} \OperatorTok{+} \OperatorTok{((}\FunctionTok{isSymmetric}\OperatorTok{(}\NormalTok{mat2}\OperatorTok{)} \OperatorTok{?} \StringTok{"Symmetric"} \OperatorTok{:} \StringTok{"Not Symmetric"}\OperatorTok{)));}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Output:}
+
+\begin{verbatim}
+Enter the order of the Matrix: 3
+mat[0][0]: 1
+mat[0][1]: 0
+mat[0][2]: 0
+mat[1][0]: 0
+mat[1][1]: 1
+mat[1][2]: 0
+mat[2][0]: 0
+mat[2][1]: 0
+mat[2][2]: 1
+1 0 0 
+0 1 0
+0 0 1
+
+The Matrix is Symmetric
+\end{verbatim}
+
+To Perform Matrix Multiplication \textbf{Code:}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\CommentTok{// Multiplication.java}
+\KeywordTok{import} \ImportTok{java}\OperatorTok{.}\ImportTok{util}\OperatorTok{.}\ImportTok{Scanner}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{matrix}\OperatorTok{.}\ImportTok{Matrix}\OperatorTok{;}
+\KeywordTok{class}\NormalTok{ Multiplication}
+\OperatorTok{\{}
+    \DataTypeTok{static}\NormalTok{ Matrix }\FunctionTok{multiply}\OperatorTok{(}\NormalTok{Matrix mat1}\OperatorTok{,}\NormalTok{ Matrix mat2}\OperatorTok{)}
+    \OperatorTok{\{}
+        \ControlFlowTok{if}\OperatorTok{(}\NormalTok{mat1}\OperatorTok{.}\FunctionTok{getColumns}\OperatorTok{()} \OperatorTok{!=}\NormalTok{ mat2}\OperatorTok{.}\FunctionTok{getRows}\OperatorTok{())}
+        \OperatorTok{\{}
+            \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"Cannot Multiply these matrices"}\OperatorTok{);}
+        \OperatorTok{\}}
+\NormalTok{        Matrix matMult }\OperatorTok{=} \KeywordTok{new} \FunctionTok{Matrix}\OperatorTok{(}\NormalTok{mat1}\OperatorTok{.}\FunctionTok{getRows}\OperatorTok{(),}\NormalTok{ mat2}\OperatorTok{.}\FunctionTok{getColumns}\OperatorTok{());}
+        \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ i}\OperatorTok{=}\DecValTok{0}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}}\NormalTok{ mat1}\OperatorTok{.}\FunctionTok{getRows}\OperatorTok{();}\NormalTok{ i}\OperatorTok{++)}
+        \OperatorTok{\{}
+            \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ j}\OperatorTok{=}\DecValTok{0}\OperatorTok{;}\NormalTok{ j }\OperatorTok{\textless{}}\NormalTok{ mat1}\OperatorTok{.}\FunctionTok{getColumns}\OperatorTok{();}\NormalTok{ j}\OperatorTok{++)}
+            \OperatorTok{\{}
+                \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ k }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ k }\OperatorTok{\textless{}}\NormalTok{ mat2}\OperatorTok{.}\FunctionTok{getRows}\OperatorTok{();}\NormalTok{ k}\OperatorTok{++)}
+                \OperatorTok{\{}
+\NormalTok{                    matMult}\OperatorTok{.}\FunctionTok{setElement}\OperatorTok{(}\NormalTok{i}\OperatorTok{,}\NormalTok{ j}\OperatorTok{,}\NormalTok{ matMult}\OperatorTok{.}\FunctionTok{elementAt}\OperatorTok{(}\NormalTok{i}\OperatorTok{,}\NormalTok{ j}\OperatorTok{)} \OperatorTok{+}\NormalTok{ mat1}\OperatorTok{.}\FunctionTok{elementAt}\OperatorTok{(}\NormalTok{i}\OperatorTok{,}\NormalTok{ k}\OperatorTok{)} \OperatorTok{*}\NormalTok{ mat2}\OperatorTok{.}\FunctionTok{elementAt}\OperatorTok{(}\NormalTok{k}\OperatorTok{,}\NormalTok{ j}\OperatorTok{));}
+                \OperatorTok{\}}
+            \OperatorTok{\}}
+        \OperatorTok{\}}
+        \ControlFlowTok{return}\NormalTok{ matMult}\OperatorTok{;}
+    \OperatorTok{\}}
+    \KeywordTok{public} \DataTypeTok{static} \DataTypeTok{void} \FunctionTok{main}\OperatorTok{(}\BuiltInTok{String}\NormalTok{ args}\OperatorTok{[])}
+    \OperatorTok{\{}
+        \BuiltInTok{Scanner}\NormalTok{ sc }\OperatorTok{=} \KeywordTok{new} \BuiltInTok{Scanner}\OperatorTok{(}\BuiltInTok{System}\OperatorTok{.}\FunctionTok{in}\OperatorTok{);}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{print}\OperatorTok{(}\StringTok{"Enter the no of rows of Matrix1: "}\OperatorTok{);}
+        \DataTypeTok{int}\NormalTok{ rows }\OperatorTok{=}\NormalTok{ sc}\OperatorTok{.}\FunctionTok{nextInt}\OperatorTok{();}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{print}\OperatorTok{(}\StringTok{"Enter the no of columns of Matrix1: "}\OperatorTok{);}
+        \DataTypeTok{int}\NormalTok{ columns }\OperatorTok{=}\NormalTok{ sc}\OperatorTok{.}\FunctionTok{nextInt}\OperatorTok{();}
+\NormalTok{        Matrix mat1 }\OperatorTok{=} \KeywordTok{new} \FunctionTok{Matrix}\OperatorTok{(}\NormalTok{rows}\OperatorTok{,}\NormalTok{ columns}\OperatorTok{);}
+\NormalTok{        mat1}\OperatorTok{.}\FunctionTok{setMatrix}\OperatorTok{();}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{print}\OperatorTok{(}\StringTok{"Enter the no of rows of Matrix2: "}\OperatorTok{);}
+\NormalTok{        rows }\OperatorTok{=}\NormalTok{ sc}\OperatorTok{.}\FunctionTok{nextInt}\OperatorTok{();}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{print}\OperatorTok{(}\StringTok{"Enter the no of columns of Matrix2: "}\OperatorTok{);}
+\NormalTok{        columns }\OperatorTok{=}\NormalTok{ sc}\OperatorTok{.}\FunctionTok{nextInt}\OperatorTok{();}
+\NormalTok{        Matrix mat2 }\OperatorTok{=} \KeywordTok{new} \FunctionTok{Matrix}\OperatorTok{(}\NormalTok{rows}\OperatorTok{,}\NormalTok{ columns}\OperatorTok{);}
+\NormalTok{        mat2}\OperatorTok{.}\FunctionTok{setMatrix}\OperatorTok{();}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"mat1 x mat2 = "}\OperatorTok{);}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{print}\OperatorTok{(}\FunctionTok{multiply}\OperatorTok{(}\NormalTok{mat1}\OperatorTok{,}\NormalTok{ mat2}\OperatorTok{));}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Output:}
+
+\begin{verbatim}
+Enter the no of rows of Matrix1: 2
+Enter the no of columns of Matrix1: 2
+mat[0][0]: 1
+mat[0][1]: 1
+mat[1][0]: 1
+mat[1][1]: 1
+Enter the no of rows of Matrix2: 2
+Enter the no of columns of Matrix2: 2
+mat[0][0]: 1
+mat[0][1]: 2
+mat[1][0]: 1
+mat[1][1]: 2
+mat1 x mat2 = 
+2 4 
+2 4 
+\end{verbatim}
+
+Reverse the string and decide whether it is palindrome or not and
+Capitalize the String \textbf{Code:}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\KeywordTok{import} \ImportTok{java}\OperatorTok{.}\ImportTok{util}\OperatorTok{.}\ImportTok{Scanner}\OperatorTok{;}
+\KeywordTok{class}\NormalTok{ Pallindrome}
+\OperatorTok{\{}
+    \KeywordTok{public} \DataTypeTok{static} \DataTypeTok{void} \FunctionTok{main}\OperatorTok{(}\BuiltInTok{String}\NormalTok{ args}\OperatorTok{[])}
+    \OperatorTok{\{}
+        \BuiltInTok{Scanner}\NormalTok{ sc }\OperatorTok{=} \KeywordTok{new} \BuiltInTok{Scanner}\OperatorTok{(}\BuiltInTok{System}\OperatorTok{.}\FunctionTok{in}\OperatorTok{);}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{print}\OperatorTok{(}\StringTok{"Enter a String: "}\OperatorTok{);}
+        \BuiltInTok{String}\NormalTok{ in }\OperatorTok{=}\NormalTok{ sc}\OperatorTok{.}\FunctionTok{next}\OperatorTok{();}
+        \DataTypeTok{char}\NormalTok{ str}\OperatorTok{[]} \OperatorTok{=}\NormalTok{ in}\OperatorTok{.}\FunctionTok{toCharArray}\OperatorTok{();}
+        \DataTypeTok{char}\NormalTok{ rev}\OperatorTok{[]} \OperatorTok{=} \KeywordTok{new} \DataTypeTok{char}\OperatorTok{[}\NormalTok{str}\OperatorTok{.}\FunctionTok{length}\OperatorTok{];}
+        \ControlFlowTok{for}\OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}}\NormalTok{ str}\OperatorTok{.}\FunctionTok{length}\OperatorTok{;}\NormalTok{ i}\OperatorTok{++)}
+        \OperatorTok{\{}
+\NormalTok{            rev}\OperatorTok{[}\NormalTok{i}\OperatorTok{]} \OperatorTok{=}\NormalTok{ str}\OperatorTok{[}\NormalTok{str}\OperatorTok{.}\FunctionTok{length} \OperatorTok{{-}} \DecValTok{1} \OperatorTok{{-}}\NormalTok{ i}\OperatorTok{];}
+        \OperatorTok{\}}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"The String is "} \OperatorTok{+} \OperatorTok{(}\NormalTok{in}\OperatorTok{.}\FunctionTok{equals}\OperatorTok{(}\KeywordTok{new} \BuiltInTok{String}\OperatorTok{(}\NormalTok{rev}\OperatorTok{))} \OperatorTok{?} \StringTok{"Pallindrome"} \OperatorTok{:} \StringTok{"Not Pallindrome"}\OperatorTok{));}
+        \BuiltInTok{System}\OperatorTok{.}\FunctionTok{out}\OperatorTok{.}\FunctionTok{println}\OperatorTok{(}\StringTok{"Capitalized String: "} \OperatorTok{+}\NormalTok{ in}\OperatorTok{.}\FunctionTok{toUpperCase}\OperatorTok{());}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Output:}
+
+\begin{verbatim}
+Enter a String: naman
+The String is Pallindrome
+Capitalized String: NAMAN
+\end{verbatim}
+
+\end{document}
