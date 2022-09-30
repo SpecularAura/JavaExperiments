@@ -34,7 +34,7 @@ class Student
 		{
 			sum += num;
 		}
-		return sum
+		return sum;
 	}
 	double percentage(int[] arr, int total)
 	{
