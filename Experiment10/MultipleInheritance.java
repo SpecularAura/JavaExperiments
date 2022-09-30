@@ -48,7 +48,7 @@ class Student
 	{
 		System.out.println(name + "Has studies for " + hours + "hours");
 	}
-	public int getResult()
+	public double getResult()
 	{
 		return result;
 	}
