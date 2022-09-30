@@ -93,3 +93,12 @@ class SportsRepresentative extends Student implements Representative
 		System.out.println(name + " passed a message: " + str);
 	}
 }
+class MultipleInheritance
+{
+	public static void main(String args[])
+	{
+		SportsRepresentative sr = new SportsRepresentative("Aum Kulkarni", 36, 2, "D6AD");
+		MusicRepresentative mr = new MusicRepresentative("Aum Kulkarni", 36, 2, "D6AD");
+		int marks[] = new int[]{50, 70, 90, 80, 60};
+	}
+}
