@@ -10,18 +10,31 @@ abstract class Shape
 		return res;
 	}
 }
-class Rectangle extends Shape
+final class Rectangle extends Shape
 {
 	double length, breadth;
+	public Rectangle()
+	{
+		length  = 0.0;
+		breadth = 0.0;
+	}
 	public Rectangle(double length, double breadth)
 	{
-		this.length = length;
+		this.length  = length;
 		this.breadth = breadth;
 	}
 	public double area()
 	{
 		return length * breadth;
 	}
+	public String toString()
+	{
+		String str = "The area of a Rectangle with length " + length + " and width " + breadth + ": " + area();
+		return str;
+	}
+}
+class Square extends Rectangle
+{
 }
 class Triangle extends Shape
 {
@@ -37,6 +50,11 @@ class Triangle extends Shape
 		double s = (side1 + side2 + side3) / 2;
 		return sqrt(s * (s - side1) * (s - side2) * (s - side3));
 	}
+	public String toString()
+	{
+		String str = "The area of a Triangle with sides " + side1 + " " + side2 + " " + side3 + ": " + area();
+		return str;
+	}
 }
 class Circle extends Shape
 {
@@ -48,6 +66,11 @@ class Circle extends Shape
 	public double area()
 	{
 		return PI * radius * radius;
+	}
+	public String toString()
+	{
+		String str = "The area of a Circle with radius " + radius + ": " + area();
+		return str;
 	}
 }
 class AbstracMethods

@@ -5,10 +5,10 @@ header-includes:
  - \setmainfont{Times New Roman}
  - \setmonofont{Latin Modern Mono}
  - \fvset{breaklines=true, breakanywhere=true}
- - \renewcommand{\theFancyVerbLine}{\textcolor[rgb]{0.0,0.0,0.0}{\footnotesize\arabic{FancyVerbLine}}}
+ - \renewcommand{\theFancyVerbLine}{\textcolor[rgb]{0.0,0.0,0.0}{\small\arabic{FancyVerbLine}}}
  - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, frame=leftline, numbersep=4pt, framesep=4pt}
-fontsize: 12pt
-geometry: left=2cm,right=2cm,top=2cm,bottom=2cm
+fontsize: 10pt
+geometry: left=2cm,right=2cm,top=0cm,bottom=2cm
 ---
 **Code:**
 ```{.C .numberLines}
