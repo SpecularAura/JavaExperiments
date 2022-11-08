@@ -1,0 +1,621 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  10pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[left=3cm,right=3cm,top=1cm,bottom=2cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{fontspec}
+\usepackage{fvextra}
+\usepackage{accsupp}
+\setmainfont{Times New Roman}
+\setmonofont{Latin Modern Mono}
+\fvset{breaklines=true, breakanywhere=true}
+\DeclareRobustCommand\squelch[1]{%
+    \BeginAccSupp{method=plain,ActualText={}}#1\EndAccSupp{}}
+\renewcommand{\theFancyVerbLine}{\squelch{\textcolor[rgb]{0.0,0.0,0.0}{\small\arabic{FancyVerbLine}}}}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, frame=leftline, numbersep=4pt, framesep=4pt}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\Large Code: \normalsize
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\KeywordTok{package}\ImportTok{ medinventory}\OperatorTok{;}
+
+\KeywordTok{import} \ImportTok{java}\OperatorTok{.}\ImportTok{awt}\OperatorTok{.}\ImportTok{event}\OperatorTok{.}\ImportTok{KeyEvent}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{java}\OperatorTok{.}\ImportTok{sql}\OperatorTok{.*;}
+\KeywordTok{import} \ImportTok{java}\OperatorTok{.}\ImportTok{util}\OperatorTok{.}\ImportTok{logging}\OperatorTok{.}\ImportTok{Level}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{java}\OperatorTok{.}\ImportTok{util}\OperatorTok{.}\ImportTok{logging}\OperatorTok{.}\ImportTok{Logger}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{java}\OperatorTok{.}\ImportTok{sql}\OperatorTok{.}\ImportTok{ResultSet}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{java}\OperatorTok{.}\ImportTok{util}\OperatorTok{.}\ImportTok{HashMap}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{javax}\OperatorTok{.}\ImportTok{swing}\OperatorTok{.}\ImportTok{JOptionPane}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{javax}\OperatorTok{.}\ImportTok{swing}\OperatorTok{.}\ImportTok{table}\OperatorTok{.}\ImportTok{DefaultTableModel}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{net}\OperatorTok{.}\ImportTok{sf}\OperatorTok{.}\ImportTok{jasperreports}\OperatorTok{.}\ImportTok{engine}\OperatorTok{.}\ImportTok{JRException}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{net}\OperatorTok{.}\ImportTok{sf}\OperatorTok{.}\ImportTok{jasperreports}\OperatorTok{.}\ImportTok{engine}\OperatorTok{.}\ImportTok{JasperCompileManager}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{net}\OperatorTok{.}\ImportTok{sf}\OperatorTok{.}\ImportTok{jasperreports}\OperatorTok{.}\ImportTok{engine}\OperatorTok{.}\ImportTok{JasperFillManager}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{net}\OperatorTok{.}\ImportTok{sf}\OperatorTok{.}\ImportTok{jasperreports}\OperatorTok{.}\ImportTok{engine}\OperatorTok{.}\ImportTok{JasperPrint}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{net}\OperatorTok{.}\ImportTok{sf}\OperatorTok{.}\ImportTok{jasperreports}\OperatorTok{.}\ImportTok{engine}\OperatorTok{.}\ImportTok{JasperReport}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{net}\OperatorTok{.}\ImportTok{sf}\OperatorTok{.}\ImportTok{jasperreports}\OperatorTok{.}\ImportTok{engine}\OperatorTok{.}\ImportTok{design}\OperatorTok{.}\ImportTok{JasperDesign}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{net}\OperatorTok{.}\ImportTok{sf}\OperatorTok{.}\ImportTok{jasperreports}\OperatorTok{.}\ImportTok{engine}\OperatorTok{.}\ImportTok{xml}\OperatorTok{.}\ImportTok{JRXmlLoader}\OperatorTok{;}
+\KeywordTok{import} \ImportTok{net}\OperatorTok{.}\ImportTok{sf}\OperatorTok{.}\ImportTok{jasperreports}\OperatorTok{.}\ImportTok{view}\OperatorTok{.}\ImportTok{JasperViewer}\OperatorTok{;}
+
+\CommentTok{/**}
+ \CommentTok{*}
+\CommentTok{ * @}\NormalTok{author Manas}
+ \CommentTok{*/}
+\KeywordTok{public} \KeywordTok{class}\NormalTok{ medinventory }\KeywordTok{extends}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JFrame} \OperatorTok{\{}
+
+    \CommentTok{/**}
+     \CommentTok{*}\NormalTok{ Creates new form medinventory}
+     \CommentTok{*/}
+    \KeywordTok{public} \FunctionTok{medinventory}\OperatorTok{()} \OperatorTok{\{}
+        \FunctionTok{initComponents}\OperatorTok{();}
+        \FunctionTok{Connect}\OperatorTok{();}
+    \OperatorTok{\}}
+
+    \DataTypeTok{static} \BuiltInTok{Connection}\NormalTok{ con}\OperatorTok{;}
+    \BuiltInTok{PreparedStatement}\NormalTok{ pst}\OperatorTok{;}
+    \BuiltInTok{PreparedStatement}\NormalTok{ pst1}\OperatorTok{;}
+    \BuiltInTok{ResultSet}\NormalTok{ rs}\OperatorTok{;}
+    \BuiltInTok{DefaultTableModel}\NormalTok{ df}\OperatorTok{;}
+
+    \KeywordTok{public} \DataTypeTok{static} \DataTypeTok{void} \FunctionTok{Connect}\OperatorTok{()} \OperatorTok{\{}
+        \ControlFlowTok{try} \OperatorTok{\{}
+            \CommentTok{// Class.forName("com.mysql.jdbc.Driver");}
+\NormalTok{            con }\OperatorTok{=} \BuiltInTok{DriverManager}\OperatorTok{.}\FunctionTok{getConnection}\OperatorTok{(}\StringTok{"jdbc:mysql://sql.freedb.tech/freedb\_pharma"}\OperatorTok{,}
+                    \StringTok{"freedb\_pharma{-}user"}\OperatorTok{,}
+                    \StringTok{"Atm8Hp\#THdhN3gm"}\OperatorTok{);}
+        \OperatorTok{\}} \ControlFlowTok{catch} \OperatorTok{(}\BuiltInTok{SQLException}\NormalTok{ ex}\OperatorTok{)} \OperatorTok{\{}
+            \BuiltInTok{Logger}\OperatorTok{.}\FunctionTok{getLogger}\OperatorTok{(}\NormalTok{medinventory}\OperatorTok{.}\FunctionTok{class}\OperatorTok{.}\FunctionTok{getName}\OperatorTok{()).}\FunctionTok{log}\OperatorTok{(}\BuiltInTok{Level}\OperatorTok{.}\FunctionTok{SEVERE}\OperatorTok{,} \KeywordTok{null}\OperatorTok{,}\NormalTok{ ex}\OperatorTok{);}
+        \OperatorTok{\}}
+    \OperatorTok{\}}
+
+    \KeywordTok{public} \DataTypeTok{void} \FunctionTok{sales}\OperatorTok{()} \KeywordTok{throws} \BuiltInTok{SQLException} \OperatorTok{\{}
+        \BuiltInTok{String}\NormalTok{ totalcost }\OperatorTok{=}\NormalTok{ txttcost}\OperatorTok{.}\FunctionTok{getText}\OperatorTok{();}
+        \BuiltInTok{String}\NormalTok{ pay }\OperatorTok{=}\NormalTok{ txtpay}\OperatorTok{.}\FunctionTok{getText}\OperatorTok{();}
+        \BuiltInTok{String}\NormalTok{ bal }\OperatorTok{=}\NormalTok{ txtbal}\OperatorTok{.}\FunctionTok{getText}\OperatorTok{();}
+
+        \DataTypeTok{int}\NormalTok{ lastid }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}
+        \BuiltInTok{String}\NormalTok{ query }\OperatorTok{=} \StringTok{"insert into sales(subtotal,pay,bal)values(?,?,?)"}\OperatorTok{;}
+\NormalTok{        pst }\OperatorTok{=}\NormalTok{ con}\OperatorTok{.}\FunctionTok{prepareStatement}\OperatorTok{(}\NormalTok{query}\OperatorTok{,} \BuiltInTok{Statement}\OperatorTok{.}\FunctionTok{RETURN\_GENERATED\_KEYS}\OperatorTok{);}
+\NormalTok{        pst}\OperatorTok{.}\FunctionTok{setString}\OperatorTok{(}\DecValTok{1}\OperatorTok{,}\NormalTok{ totalcost}\OperatorTok{);}
+\NormalTok{        pst}\OperatorTok{.}\FunctionTok{setString}\OperatorTok{(}\DecValTok{2}\OperatorTok{,}\NormalTok{ pay}\OperatorTok{);}
+\NormalTok{        pst}\OperatorTok{.}\FunctionTok{setString}\OperatorTok{(}\DecValTok{3}\OperatorTok{,}\NormalTok{ bal}\OperatorTok{);}
+\NormalTok{        pst}\OperatorTok{.}\FunctionTok{executeUpdate}\OperatorTok{();}
+\NormalTok{        rs }\OperatorTok{=}\NormalTok{ pst}\OperatorTok{.}\FunctionTok{getGeneratedKeys}\OperatorTok{();}
+
+        \ControlFlowTok{if} \OperatorTok{(}\NormalTok{rs}\OperatorTok{.}\FunctionTok{next}\OperatorTok{())} \OperatorTok{\{}
+\NormalTok{            lastid }\OperatorTok{=}\NormalTok{ rs}\OperatorTok{.}\FunctionTok{getInt}\OperatorTok{(}\DecValTok{1}\OperatorTok{);}
+        \OperatorTok{\}}
+
+        \BuiltInTok{String}\NormalTok{ query1 }\OperatorTok{=} \StringTok{"insert into sales\_product(sales\_id,drugname,price,qty,total)values(?,?,?,?,?)"}\OperatorTok{;}
+\NormalTok{        pst1 }\OperatorTok{=}\NormalTok{ con}\OperatorTok{.}\FunctionTok{prepareStatement}\OperatorTok{(}\NormalTok{query1}\OperatorTok{);}
+
+        \BuiltInTok{String}\NormalTok{ drugname}\OperatorTok{;}
+        \BuiltInTok{String}\NormalTok{ price}\OperatorTok{;}
+        \BuiltInTok{String}\NormalTok{ qty}\OperatorTok{;}
+        \DataTypeTok{int}\NormalTok{ total}\OperatorTok{;}
+
+        \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}}\NormalTok{ jTable1}\OperatorTok{.}\FunctionTok{getRowCount}\OperatorTok{();}\NormalTok{ i}\OperatorTok{++)} \OperatorTok{\{}
+\NormalTok{            drugname }\OperatorTok{=} \OperatorTok{(}\BuiltInTok{String}\OperatorTok{)}\NormalTok{ jTable1}\OperatorTok{.}\FunctionTok{getValueAt}\OperatorTok{(}\NormalTok{i}\OperatorTok{,} \DecValTok{0}\OperatorTok{);}
+\NormalTok{            price }\OperatorTok{=} \OperatorTok{(}\BuiltInTok{String}\OperatorTok{)}\NormalTok{ jTable1}\OperatorTok{.}\FunctionTok{getValueAt}\OperatorTok{(}\NormalTok{i}\OperatorTok{,} \DecValTok{1}\OperatorTok{);}
+\NormalTok{            qty }\OperatorTok{=} \OperatorTok{(}\BuiltInTok{String}\OperatorTok{)}\NormalTok{ jTable1}\OperatorTok{.}\FunctionTok{getValueAt}\OperatorTok{(}\NormalTok{i}\OperatorTok{,} \DecValTok{2}\OperatorTok{);}
+\NormalTok{            total }\OperatorTok{=} \OperatorTok{(}\DataTypeTok{int}\OperatorTok{)}\NormalTok{ jTable1}\OperatorTok{.}\FunctionTok{getValueAt}\OperatorTok{(}\NormalTok{i}\OperatorTok{,} \DecValTok{3}\OperatorTok{);}
+
+\NormalTok{            pst1}\OperatorTok{.}\FunctionTok{setInt}\OperatorTok{(}\DecValTok{1}\OperatorTok{,}\NormalTok{ lastid}\OperatorTok{);}
+\NormalTok{            pst1}\OperatorTok{.}\FunctionTok{setString}\OperatorTok{(}\DecValTok{2}\OperatorTok{,}\NormalTok{ drugname}\OperatorTok{);}
+\NormalTok{            pst1}\OperatorTok{.}\FunctionTok{setString}\OperatorTok{(}\DecValTok{3}\OperatorTok{,}\NormalTok{ price}\OperatorTok{);}
+\NormalTok{            pst1}\OperatorTok{.}\FunctionTok{setString}\OperatorTok{(}\DecValTok{4}\OperatorTok{,}\NormalTok{ qty}\OperatorTok{);}
+\NormalTok{            pst1}\OperatorTok{.}\FunctionTok{setInt}\OperatorTok{(}\DecValTok{5}\OperatorTok{,}\NormalTok{ total}\OperatorTok{);}
+\NormalTok{            pst1}\OperatorTok{.}\FunctionTok{executeUpdate}\OperatorTok{();}
+        \OperatorTok{\}}
+        \BuiltInTok{JOptionPane}\OperatorTok{.}\FunctionTok{showMessageDialog}\OperatorTok{(}\KeywordTok{this}\OperatorTok{,} \StringTok{"Successful"}\OperatorTok{);}
+        \BuiltInTok{HashMap}\NormalTok{ a }\OperatorTok{=} \KeywordTok{new} \BuiltInTok{HashMap}\OperatorTok{();}
+\NormalTok{        a}\OperatorTok{.}\FunctionTok{put}\OperatorTok{(}\StringTok{"invo"}\OperatorTok{,}\NormalTok{ lastid}\OperatorTok{);}
+        
+        \ControlFlowTok{try} \OperatorTok{\{}
+\NormalTok{            JasperDesign jdesign }\OperatorTok{=} 
+\NormalTok{                    JRXmlLoader}\OperatorTok{.}\FunctionTok{load}\OperatorTok{(}\StringTok{"./report1.jrxml"}\OperatorTok{);}
+\NormalTok{            JasperReport jreport }\OperatorTok{=}\NormalTok{ JasperCompileManager}\OperatorTok{.}\FunctionTok{compileReport}\OperatorTok{(}\NormalTok{jdesign}\OperatorTok{);}
+            
+\NormalTok{            JasperPrint jprint }\OperatorTok{=}\NormalTok{ JasperFillManager}\OperatorTok{.}\FunctionTok{fillReport}\OperatorTok{(}\NormalTok{jreport}\OperatorTok{,}\NormalTok{ a}\OperatorTok{,}\NormalTok{ con}\OperatorTok{);}
+\NormalTok{            JasperViewer}\OperatorTok{.}\FunctionTok{viewReport}\OperatorTok{(}\NormalTok{jprint}\OperatorTok{);}
+            
+        \OperatorTok{\}} \ControlFlowTok{catch} \OperatorTok{(}\NormalTok{JRException ex}\OperatorTok{)} \OperatorTok{\{}
+            \BuiltInTok{Logger}\OperatorTok{.}\FunctionTok{getLogger}\OperatorTok{(}\NormalTok{medinventory}\OperatorTok{.}\FunctionTok{class}\OperatorTok{.}\FunctionTok{getName}\OperatorTok{()).}\FunctionTok{log}\OperatorTok{(}\BuiltInTok{Level}\OperatorTok{.}\FunctionTok{SEVERE}\OperatorTok{,} \KeywordTok{null}\OperatorTok{,}\NormalTok{ ex}\OperatorTok{);}
+        \OperatorTok{\}}
+    \OperatorTok{\}}
+
+    \CommentTok{/**}
+     \CommentTok{*}\NormalTok{ This method is called from within the constructor to initialize the form}\CommentTok{.}
+     \CommentTok{*} \AlertTok{WARNING}\CommentTok{:}\NormalTok{ Do NOT modify this code}\CommentTok{.}\NormalTok{ The content of this method is always}
+     \CommentTok{*}\NormalTok{ regenerated by the Form Editor}\CommentTok{.}
+     \CommentTok{*/}
+    \AttributeTok{@SuppressWarnings}\OperatorTok{(}\StringTok{"unchecked"}\OperatorTok{)}
+    \CommentTok{// \textless{}editor{-}fold defaultstate="collapsed" desc="Generated Code"\textgreater{}                          }
+    \KeywordTok{private} \DataTypeTok{void} \FunctionTok{initComponents}\OperatorTok{()} \OperatorTok{\{}
+
+\NormalTok{        jPanel1 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JPanel}\OperatorTok{();}
+\NormalTok{        jLabel1 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\OperatorTok{();}
+\NormalTok{        jPanel2 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JPanel}\OperatorTok{();}
+\NormalTok{        jLabel2 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\OperatorTok{();}
+\NormalTok{        jLabel3 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\OperatorTok{();}
+\NormalTok{        jLabel4 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\OperatorTok{();}
+\NormalTok{        txtdcode }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTextField}\OperatorTok{();}
+\NormalTok{        txtdname }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTextField}\OperatorTok{();}
+\NormalTok{        txtqty }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JSpinner}\OperatorTok{();}
+\NormalTok{        jLabel5 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\OperatorTok{();}
+\NormalTok{        jLabel6 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\OperatorTok{();}
+\NormalTok{        jLabel7 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\OperatorTok{();}
+\NormalTok{        txttcost }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTextField}\OperatorTok{();}
+\NormalTok{        txtbal }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTextField}\OperatorTok{();}
+\NormalTok{        txtpay }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTextField}\OperatorTok{();}
+\NormalTok{        jButton1 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JButton}\OperatorTok{();}
+\NormalTok{        jLabel8 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\OperatorTok{();}
+\NormalTok{        txtprice }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTextField}\OperatorTok{();}
+\NormalTok{        jScrollPane1 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JScrollPane}\OperatorTok{();}
+\NormalTok{        jTable1 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTable}\OperatorTok{();}
+\NormalTok{        jButton2 }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JButton}\OperatorTok{();}
+
+        \FunctionTok{setDefaultCloseOperation}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{WindowConstants}\OperatorTok{.}\FunctionTok{EXIT\_ON\_CLOSE}\OperatorTok{);}
+
+\NormalTok{        jPanel1}\OperatorTok{.}\FunctionTok{setBackground}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Color}\OperatorTok{(}\DecValTok{86}\OperatorTok{,} \DecValTok{196}\OperatorTok{,} \DecValTok{195}\OperatorTok{));}
+
+\NormalTok{        jLabel1}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{24}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        jLabel1}\OperatorTok{.}\FunctionTok{setForeground}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Color}\OperatorTok{(}\DecValTok{242}\OperatorTok{,} \DecValTok{242}\OperatorTok{,} \DecValTok{242}\OperatorTok{));}
+\NormalTok{        jLabel1}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\StringTok{"Pharmacy Inventory Management System"}\OperatorTok{);}
+
+\NormalTok{        javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\NormalTok{ jPanel1Layout }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{(}\NormalTok{jPanel1}\OperatorTok{);}
+\NormalTok{        jPanel1}\OperatorTok{.}\FunctionTok{setLayout}\OperatorTok{(}\NormalTok{jPanel1Layout}\OperatorTok{);}
+\NormalTok{        jPanel1Layout}\OperatorTok{.}\FunctionTok{setHorizontalGroup}\OperatorTok{(}
+\NormalTok{            jPanel1Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{)}
+            \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{TRAILING}\OperatorTok{,}\NormalTok{ jPanel1Layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                \OperatorTok{.}\FunctionTok{addContainerGap}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{DEFAULT\_SIZE}\OperatorTok{,} \BuiltInTok{Short}\OperatorTok{.}\FunctionTok{MAX\_VALUE}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel1}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{209}\OperatorTok{,} \DecValTok{209}\OperatorTok{,} \DecValTok{209}\OperatorTok{))}
+        \OperatorTok{);}
+\NormalTok{        jPanel1Layout}\OperatorTok{.}\FunctionTok{setVerticalGroup}\OperatorTok{(}
+\NormalTok{            jPanel1Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{)}
+            \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel1Layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{19}\OperatorTok{,} \DecValTok{19}\OperatorTok{,} \DecValTok{19}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel1}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addContainerGap}\OperatorTok{(}\DecValTok{30}\OperatorTok{,} \BuiltInTok{Short}\OperatorTok{.}\FunctionTok{MAX\_VALUE}\OperatorTok{))}
+        \OperatorTok{);}
+
+\NormalTok{        jPanel2}\OperatorTok{.}\FunctionTok{setBorder}\OperatorTok{(}\KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{border}\OperatorTok{.}\FunctionTok{SoftBevelBorder}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{border}\OperatorTok{.}\FunctionTok{BevelBorder}\OperatorTok{.}\FunctionTok{RAISED}\OperatorTok{));}
+
+\NormalTok{        jLabel2}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        jLabel2}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\StringTok{"Drug Code"}\OperatorTok{);}
+
+\NormalTok{        jLabel3}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        jLabel3}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\StringTok{"Drug Name"}\OperatorTok{);}
+
+\NormalTok{        jLabel4}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        jLabel4}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\StringTok{"Qty"}\OperatorTok{);}
+
+\NormalTok{        txtdcode}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        txtdcode}\OperatorTok{.}\FunctionTok{addActionListener}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionListener}\OperatorTok{()} \OperatorTok{\{}
+            \KeywordTok{public} \DataTypeTok{void} \FunctionTok{actionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}
+                \FunctionTok{txtdcodeActionPerformed}\OperatorTok{(}\NormalTok{evt}\OperatorTok{);}
+            \OperatorTok{\}}
+        \OperatorTok{\});}
+\NormalTok{        txtdcode}\OperatorTok{.}\FunctionTok{addKeyListener}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{KeyAdapter}\OperatorTok{()} \OperatorTok{\{}
+            \KeywordTok{public} \DataTypeTok{void} \FunctionTok{keyPressed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{KeyEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}
+                \FunctionTok{txtdcodeKeyPressed}\OperatorTok{(}\NormalTok{evt}\OperatorTok{);}
+            \OperatorTok{\}}
+        \OperatorTok{\});}
+
+\NormalTok{        txtdname}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+
+\NormalTok{        txtqty}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+
+\NormalTok{        jLabel5}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        jLabel5}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\StringTok{"Total Cost"}\OperatorTok{);}
+
+\NormalTok{        jLabel6}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        jLabel6}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\StringTok{"Payment"}\OperatorTok{);}
+
+\NormalTok{        jLabel7}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        jLabel7}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\StringTok{"Balance"}\OperatorTok{);}
+
+\NormalTok{        txttcost}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        txttcost}\OperatorTok{.}\FunctionTok{addActionListener}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionListener}\OperatorTok{()} \OperatorTok{\{}
+            \KeywordTok{public} \DataTypeTok{void} \FunctionTok{actionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}
+                \FunctionTok{txttcostActionPerformed}\OperatorTok{(}\NormalTok{evt}\OperatorTok{);}
+            \OperatorTok{\}}
+        \OperatorTok{\});}
+
+\NormalTok{        txtbal}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        txtbal}\OperatorTok{.}\FunctionTok{addActionListener}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionListener}\OperatorTok{()} \OperatorTok{\{}
+            \KeywordTok{public} \DataTypeTok{void} \FunctionTok{actionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}
+                \FunctionTok{txtbalActionPerformed}\OperatorTok{(}\NormalTok{evt}\OperatorTok{);}
+            \OperatorTok{\}}
+        \OperatorTok{\});}
+
+\NormalTok{        txtpay}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        txtpay}\OperatorTok{.}\FunctionTok{addActionListener}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionListener}\OperatorTok{()} \OperatorTok{\{}
+            \KeywordTok{public} \DataTypeTok{void} \FunctionTok{actionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}
+                \FunctionTok{txtpayActionPerformed}\OperatorTok{(}\NormalTok{evt}\OperatorTok{);}
+            \OperatorTok{\}}
+        \OperatorTok{\});}
+
+\NormalTok{        jButton1}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        jButton1}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\StringTok{"ADD"}\OperatorTok{);}
+\NormalTok{        jButton1}\OperatorTok{.}\FunctionTok{addActionListener}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionListener}\OperatorTok{()} \OperatorTok{\{}
+            \KeywordTok{public} \DataTypeTok{void} \FunctionTok{actionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}
+                \FunctionTok{jButton1ActionPerformed}\OperatorTok{(}\NormalTok{evt}\OperatorTok{);}
+            \OperatorTok{\}}
+        \OperatorTok{\});}
+
+\NormalTok{        jLabel8}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        jLabel8}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\StringTok{"Price"}\OperatorTok{);}
+
+\NormalTok{        txtprice}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        txtprice}\OperatorTok{.}\FunctionTok{addActionListener}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionListener}\OperatorTok{()} \OperatorTok{\{}
+            \KeywordTok{public} \DataTypeTok{void} \FunctionTok{actionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}
+                \FunctionTok{txtpriceActionPerformed}\OperatorTok{(}\NormalTok{evt}\OperatorTok{);}
+            \OperatorTok{\}}
+        \OperatorTok{\});}
+
+\NormalTok{        javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\NormalTok{ jPanel2Layout }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{(}\NormalTok{jPanel2}\OperatorTok{);}
+\NormalTok{        jPanel2}\OperatorTok{.}\FunctionTok{setLayout}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{);}
+\NormalTok{        jPanel2Layout}\OperatorTok{.}\FunctionTok{setHorizontalGroup}\OperatorTok{(}
+\NormalTok{            jPanel2Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{)}
+            \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{44}\OperatorTok{,} \DecValTok{44}\OperatorTok{,} \DecValTok{44}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel3}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel2}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel4}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel8}\OperatorTok{))}
+                \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{40}\OperatorTok{,} \DecValTok{40}\OperatorTok{,} \DecValTok{40}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                        \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txtqty}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{84}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{)}
+                        \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{144}\OperatorTok{,} \DecValTok{144}\OperatorTok{,} \DecValTok{144}\OperatorTok{)}
+                        \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jButton1}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{91}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{)}
+                        \OperatorTok{.}\FunctionTok{addContainerGap}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{DEFAULT\_SIZE}\OperatorTok{,} \BuiltInTok{Short}\OperatorTok{.}\FunctionTok{MAX\_VALUE}\OperatorTok{))}
+                    \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                        \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{,} \KeywordTok{false}\OperatorTok{)}
+                            \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txtdname}\OperatorTok{)}
+                            \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txtdcode}\OperatorTok{)}
+                            \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txtprice}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{DEFAULT\_SIZE}\OperatorTok{,} \DecValTok{176}\OperatorTok{,} \BuiltInTok{Short}\OperatorTok{.}\FunctionTok{MAX\_VALUE}\OperatorTok{))}
+                        \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{140}\OperatorTok{,} \DecValTok{140}\OperatorTok{,} \DecValTok{140}\OperatorTok{)}
+                        \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{TRAILING}\OperatorTok{)}
+                            \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel5}\OperatorTok{)}
+                            \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel6}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{)}
+                            \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel7}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{))}
+                        \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{51}\OperatorTok{,} \DecValTok{51}\OperatorTok{,} \DecValTok{51}\OperatorTok{)}
+                        \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{TRAILING}\OperatorTok{)}
+                            \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txtpay}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{)}
+                            \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                                \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \BuiltInTok{Short}\OperatorTok{.}\FunctionTok{MAX\_VALUE}\OperatorTok{)}
+                                \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txttcost}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{188}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{))}
+                            \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txtbal}\OperatorTok{))}
+                        \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{236}\OperatorTok{,} \DecValTok{236}\OperatorTok{,} \DecValTok{236}\OperatorTok{))))}
+        \OperatorTok{);}
+\NormalTok{        jPanel2Layout}\OperatorTok{.}\FunctionTok{setVerticalGroup}\OperatorTok{(}
+\NormalTok{            jPanel2Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{)}
+            \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{22}\OperatorTok{,} \DecValTok{22}\OperatorTok{,} \DecValTok{22}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{BASELINE}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel2}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txtdcode}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{30}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel5}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txttcost}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{30}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{))}
+                \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{27}\OperatorTok{,} \DecValTok{27}\OperatorTok{,} \DecValTok{27}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{BASELINE}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel3}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txtdname}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{30}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel6}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txtpay}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{30}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{))}
+                \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{22}\OperatorTok{,} \DecValTok{22}\OperatorTok{,} \DecValTok{22}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{BASELINE}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel8}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txtprice}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{30}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel7}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txtbal}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{30}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{))}
+                \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                        \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{27}\OperatorTok{,} \DecValTok{27}\OperatorTok{,} \DecValTok{27}\OperatorTok{)}
+                        \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{BASELINE}\OperatorTok{)}
+                            \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jLabel4}\OperatorTok{)}
+                            \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{txtqty}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{30}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{)))}
+                    \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{jPanel2Layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                        \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{18}\OperatorTok{,} \DecValTok{18}\OperatorTok{,} \DecValTok{18}\OperatorTok{)}
+                        \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jButton1}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{37}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{)))}
+                \OperatorTok{.}\FunctionTok{addContainerGap}\OperatorTok{(}\DecValTok{63}\OperatorTok{,} \BuiltInTok{Short}\OperatorTok{.}\FunctionTok{MAX\_VALUE}\OperatorTok{))}
+        \OperatorTok{);}
+
+\NormalTok{        jTable1}\OperatorTok{.}\FunctionTok{setModel}\OperatorTok{(}\KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{table}\OperatorTok{.}\FunctionTok{DefaultTableModel}\OperatorTok{(}
+            \KeywordTok{new} \BuiltInTok{Object} \OperatorTok{[][]} \OperatorTok{\{}
+
+            \OperatorTok{\},}
+            \KeywordTok{new} \BuiltInTok{String} \OperatorTok{[]} \OperatorTok{\{}
+                \StringTok{"Drug Name"}\OperatorTok{,} \StringTok{"Price"}\OperatorTok{,} \StringTok{"Qty"}\OperatorTok{,} \StringTok{"Total"}
+            \OperatorTok{\}}
+        \OperatorTok{));}
+\NormalTok{        jScrollPane1}\OperatorTok{.}\FunctionTok{setViewportView}\OperatorTok{(}\NormalTok{jTable1}\OperatorTok{);}
+
+\NormalTok{        jButton2}\OperatorTok{.}\FunctionTok{setFont}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{Font}\OperatorTok{(}\StringTok{"Segoe UI"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{14}\OperatorTok{));} \CommentTok{// NOI18N}
+\NormalTok{        jButton2}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\StringTok{"Print Invoice"}\OperatorTok{);}
+\NormalTok{        jButton2}\OperatorTok{.}\FunctionTok{addActionListener}\OperatorTok{(}\KeywordTok{new}\NormalTok{ java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionListener}\OperatorTok{()} \OperatorTok{\{}
+            \KeywordTok{public} \DataTypeTok{void} \FunctionTok{actionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}
+                \FunctionTok{jButton2ActionPerformed}\OperatorTok{(}\NormalTok{evt}\OperatorTok{);}
+            \OperatorTok{\}}
+        \OperatorTok{\});}
+
+\NormalTok{        javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\NormalTok{ layout }\OperatorTok{=} \KeywordTok{new}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{(}\FunctionTok{getContentPane}\OperatorTok{());}
+        \FunctionTok{getContentPane}\OperatorTok{().}\FunctionTok{setLayout}\OperatorTok{(}\NormalTok{layout}\OperatorTok{);}
+\NormalTok{        layout}\OperatorTok{.}\FunctionTok{setHorizontalGroup}\OperatorTok{(}
+\NormalTok{            layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{)}
+            \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jPanel1}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{DEFAULT\_SIZE}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{DEFAULT\_SIZE}\OperatorTok{,} \BuiltInTok{Short}\OperatorTok{.}\FunctionTok{MAX\_VALUE}\OperatorTok{)}
+            \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                \OperatorTok{.}\FunctionTok{addContainerGap}\OperatorTok{()}
+                \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jScrollPane1}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{588}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{105}\OperatorTok{,} \DecValTok{105}\OperatorTok{,} \DecValTok{105}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jButton2}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{118}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addContainerGap}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{DEFAULT\_SIZE}\OperatorTok{,} \BuiltInTok{Short}\OperatorTok{.}\FunctionTok{MAX\_VALUE}\OperatorTok{))}
+            \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{TRAILING}\OperatorTok{,}\NormalTok{ layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                \OperatorTok{.}\FunctionTok{addContainerGap}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{DEFAULT\_SIZE}\OperatorTok{,} \BuiltInTok{Short}\OperatorTok{.}\FunctionTok{MAX\_VALUE}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jPanel2}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{864}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{38}\OperatorTok{,} \DecValTok{38}\OperatorTok{,} \DecValTok{38}\OperatorTok{))}
+        \OperatorTok{);}
+\NormalTok{        layout}\OperatorTok{.}\FunctionTok{setVerticalGroup}\OperatorTok{(}
+\NormalTok{            layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{)}
+            \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jPanel1}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{DEFAULT\_SIZE}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addPreferredGap}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{LayoutStyle}\OperatorTok{.}\FunctionTok{ComponentPlacement}\OperatorTok{.}\FunctionTok{UNRELATED}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jPanel2}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{DEFAULT\_SIZE}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{)}
+                \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{layout}\OperatorTok{.}\FunctionTok{createParallelGroup}\OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{Alignment}\OperatorTok{.}\FunctionTok{LEADING}\OperatorTok{)}
+                    \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                        \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{89}\OperatorTok{,} \DecValTok{89}\OperatorTok{,} \DecValTok{89}\OperatorTok{)}
+                        \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jButton2}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{45}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{))}
+                    \OperatorTok{.}\FunctionTok{addGroup}\OperatorTok{(}\NormalTok{layout}\OperatorTok{.}\FunctionTok{createSequentialGroup}\OperatorTok{()}
+                        \OperatorTok{.}\FunctionTok{addGap}\OperatorTok{(}\DecValTok{24}\OperatorTok{,} \DecValTok{24}\OperatorTok{,} \DecValTok{24}\OperatorTok{)}
+                        \OperatorTok{.}\FunctionTok{addComponent}\OperatorTok{(}\NormalTok{jScrollPane1}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{,} \DecValTok{189}\OperatorTok{,}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{GroupLayout}\OperatorTok{.}\FunctionTok{PREFERRED\_SIZE}\OperatorTok{)))}
+                \OperatorTok{.}\FunctionTok{addContainerGap}\OperatorTok{(}\DecValTok{27}\OperatorTok{,} \BuiltInTok{Short}\OperatorTok{.}\FunctionTok{MAX\_VALUE}\OperatorTok{))}
+        \OperatorTok{);}
+
+        \FunctionTok{pack}\OperatorTok{();}
+        \FunctionTok{setLocationRelativeTo}\OperatorTok{(}\KeywordTok{null}\OperatorTok{);}
+    \OperatorTok{\}}\CommentTok{// \textless{}/editor{-}fold\textgreater{}                        }
+
+    \KeywordTok{private} \DataTypeTok{void} \FunctionTok{txtdcodeActionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}                                         
+        \CommentTok{// }\AlertTok{TODO}\CommentTok{ add your handling code here:}
+    \OperatorTok{\}}                                        
+
+    \KeywordTok{private} \DataTypeTok{void} \FunctionTok{txttcostActionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}                                         
+        \CommentTok{// }\AlertTok{TODO}\CommentTok{ add your handling code here:}
+    \OperatorTok{\}}                                        
+
+    \KeywordTok{private} \DataTypeTok{void} \FunctionTok{txtbalActionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}                                       
+        \CommentTok{// }\AlertTok{TODO}\CommentTok{ add your handling code here:}
+    \OperatorTok{\}}                                      
+
+    \KeywordTok{private} \DataTypeTok{void} \FunctionTok{txtpayActionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}                                       
+        \CommentTok{// }\AlertTok{TODO}\CommentTok{ add your handling code here:}
+    \OperatorTok{\}}                                      
+
+    \KeywordTok{private} \DataTypeTok{void} \FunctionTok{jButton1ActionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}                                         
+        \CommentTok{// }\AlertTok{TODO}\CommentTok{ add your handling code here:}
+        \DataTypeTok{int}\NormalTok{ price}\OperatorTok{,}\NormalTok{ qty}\OperatorTok{,}\NormalTok{ total}\OperatorTok{;}
+\NormalTok{        price }\OperatorTok{=} \BuiltInTok{Integer}\OperatorTok{.}\FunctionTok{parseInt}\OperatorTok{(}\NormalTok{txtprice}\OperatorTok{.}\FunctionTok{getText}\OperatorTok{());}
+\NormalTok{        qty }\OperatorTok{=} \BuiltInTok{Integer}\OperatorTok{.}\FunctionTok{parseInt}\OperatorTok{(}\NormalTok{txtqty}\OperatorTok{.}\FunctionTok{getValue}\OperatorTok{().}\FunctionTok{toString}\OperatorTok{());}
+\NormalTok{        total }\OperatorTok{=}\NormalTok{ price }\OperatorTok{*}\NormalTok{ qty}\OperatorTok{;}
+\NormalTok{        df }\OperatorTok{=} \OperatorTok{(}\BuiltInTok{DefaultTableModel}\OperatorTok{)}\NormalTok{ jTable1}\OperatorTok{.}\FunctionTok{getModel}\OperatorTok{();}
+\NormalTok{        df}\OperatorTok{.}\FunctionTok{addRow}\OperatorTok{(}\KeywordTok{new} \BuiltInTok{Object}\OperatorTok{[]\{}
+\NormalTok{            txtdname}\OperatorTok{.}\FunctionTok{getText}\OperatorTok{(),}
+\NormalTok{            txtprice}\OperatorTok{.}\FunctionTok{getText}\OperatorTok{(),}
+\NormalTok{            txtqty}\OperatorTok{.}\FunctionTok{getValue}\OperatorTok{().}\FunctionTok{toString}\OperatorTok{(),}
+\NormalTok{            total}
+        \OperatorTok{\});}
+
+        \DataTypeTok{int}\NormalTok{ sum }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}
+        \ControlFlowTok{for} \OperatorTok{(}\DataTypeTok{int}\NormalTok{ i }\OperatorTok{=} \DecValTok{0}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}}\NormalTok{ jTable1}\OperatorTok{.}\FunctionTok{getRowCount}\OperatorTok{();}\NormalTok{ i}\OperatorTok{++)} \OperatorTok{\{}
+\NormalTok{            sum }\OperatorTok{=}\NormalTok{ sum }\OperatorTok{+} \BuiltInTok{Integer}\OperatorTok{.}\FunctionTok{parseInt}\OperatorTok{(}\NormalTok{jTable1}\OperatorTok{.}\FunctionTok{getValueAt}\OperatorTok{(}\NormalTok{i}\OperatorTok{,} \DecValTok{3}\OperatorTok{).}\FunctionTok{toString}\OperatorTok{());}
+        \OperatorTok{\}}
+
+\NormalTok{        txttcost}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\BuiltInTok{String}\OperatorTok{.}\FunctionTok{valueOf}\OperatorTok{(}\NormalTok{sum}\OperatorTok{));}
+\NormalTok{        txtdcode}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\StringTok{""}\OperatorTok{);}
+\NormalTok{        txtdname}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\StringTok{""}\OperatorTok{);}
+\NormalTok{        txtqty}\OperatorTok{.}\FunctionTok{setValue}\OperatorTok{(}\DecValTok{0}\OperatorTok{);}
+\NormalTok{        txtprice}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\StringTok{""}\OperatorTok{);}
+        \CommentTok{// this.pack();}
+        \CommentTok{// this.setSize(this.getWidth() + 10, this.getHeight());}
+\NormalTok{        txtdcode}\OperatorTok{.}\FunctionTok{requestFocus}\OperatorTok{();}
+    \OperatorTok{\}}                                        
+
+    \KeywordTok{private} \DataTypeTok{void} \FunctionTok{jButton2ActionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}                                         
+        \CommentTok{// }\AlertTok{TODO}\CommentTok{ add your handling code here:}
+        \DataTypeTok{int}\NormalTok{ totalcost }\OperatorTok{=} \BuiltInTok{Integer}\OperatorTok{.}\FunctionTok{parseInt}\OperatorTok{(}\NormalTok{txttcost}\OperatorTok{.}\FunctionTok{getText}\OperatorTok{());}
+        \DataTypeTok{int}\NormalTok{ pay }\OperatorTok{=} \BuiltInTok{Integer}\OperatorTok{.}\FunctionTok{parseInt}\OperatorTok{(}\NormalTok{txtpay}\OperatorTok{.}\FunctionTok{getText}\OperatorTok{());}
+        \DataTypeTok{int}\NormalTok{ tot }\OperatorTok{=}\NormalTok{ pay }\OperatorTok{{-}}\NormalTok{ totalcost}\OperatorTok{;}
+\NormalTok{        txtbal}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\BuiltInTok{String}\OperatorTok{.}\FunctionTok{valueOf}\OperatorTok{(}\NormalTok{tot}\OperatorTok{));}
+
+        \ControlFlowTok{try} \OperatorTok{\{}
+            \FunctionTok{sales}\OperatorTok{();}
+        \OperatorTok{\}} \ControlFlowTok{catch} \OperatorTok{(}\BuiltInTok{SQLException}\NormalTok{ ex}\OperatorTok{)} \OperatorTok{\{}
+            \BuiltInTok{Logger}\OperatorTok{.}\FunctionTok{getLogger}\OperatorTok{(}\NormalTok{medinventory}\OperatorTok{.}\FunctionTok{class}\OperatorTok{.}\FunctionTok{getName}\OperatorTok{()).}\FunctionTok{log}\OperatorTok{(}\BuiltInTok{Level}\OperatorTok{.}\FunctionTok{SEVERE}\OperatorTok{,} \KeywordTok{null}\OperatorTok{,}\NormalTok{ ex}\OperatorTok{);}
+        \OperatorTok{\}}
+    \OperatorTok{\}}                                        
+
+    \KeywordTok{private} \DataTypeTok{void} \FunctionTok{txtpriceActionPerformed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{ActionEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}                                         
+        \CommentTok{// }\AlertTok{TODO}\CommentTok{ add your handling code here:}
+    \OperatorTok{\}}                                        
+
+    \KeywordTok{private} \DataTypeTok{void} \FunctionTok{txtdcodeKeyPressed}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{event}\OperatorTok{.}\FunctionTok{KeyEvent}\NormalTok{ evt}\OperatorTok{)} \OperatorTok{\{}                                    
+
+        \ControlFlowTok{if} \OperatorTok{(}\NormalTok{evt}\OperatorTok{.}\FunctionTok{getKeyCode}\OperatorTok{()} \OperatorTok{==} \BuiltInTok{KeyEvent}\OperatorTok{.}\FunctionTok{VK\_ENTER}\OperatorTok{)} \OperatorTok{\{}
+            \ControlFlowTok{try} \OperatorTok{\{}
+                \BuiltInTok{String}\NormalTok{ dcode }\OperatorTok{=}\NormalTok{ txtdcode}\OperatorTok{.}\FunctionTok{getText}\OperatorTok{();}
+\NormalTok{                pst }\OperatorTok{=}\NormalTok{ con}\OperatorTok{.}\FunctionTok{prepareStatement}\OperatorTok{(}\StringTok{"select * from product where id = ?"}\OperatorTok{);}
+\NormalTok{                pst}\OperatorTok{.}\FunctionTok{setString}\OperatorTok{(}\DecValTok{1}\OperatorTok{,}\NormalTok{ dcode}\OperatorTok{);}
+\NormalTok{                rs }\OperatorTok{=}\NormalTok{ pst}\OperatorTok{.}\FunctionTok{executeQuery}\OperatorTok{();}
+
+                \ControlFlowTok{if} \OperatorTok{(}\NormalTok{rs}\OperatorTok{.}\FunctionTok{next}\OperatorTok{()} \OperatorTok{==} \KeywordTok{false}\OperatorTok{)} \OperatorTok{\{}
+                    \BuiltInTok{JOptionPane}\OperatorTok{.}\FunctionTok{showMessageDialog}\OperatorTok{(}\KeywordTok{this}\OperatorTok{,} \StringTok{"Drug Code Not Found"}\OperatorTok{);}
+                \OperatorTok{\}} \ControlFlowTok{else} \OperatorTok{\{}
+                    \BuiltInTok{String}\NormalTok{ dname }\OperatorTok{=}\NormalTok{ rs}\OperatorTok{.}\FunctionTok{getString}\OperatorTok{(}\StringTok{"drugname"}\OperatorTok{);}
+\NormalTok{                    txtdname}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\NormalTok{dname}\OperatorTok{.}\FunctionTok{trim}\OperatorTok{());}
+                    \BuiltInTok{String}\NormalTok{ price }\OperatorTok{=}\NormalTok{ rs}\OperatorTok{.}\FunctionTok{getString}\OperatorTok{(}\StringTok{"price"}\OperatorTok{);}
+\NormalTok{                    txtprice}\OperatorTok{.}\FunctionTok{setText}\OperatorTok{(}\NormalTok{price}\OperatorTok{.}\FunctionTok{trim}\OperatorTok{());}
+\NormalTok{                    txtqty}\OperatorTok{.}\FunctionTok{requestFocus}\OperatorTok{();}
+                \OperatorTok{\}}
+            \OperatorTok{\}} \CommentTok{// }\AlertTok{TODO}\CommentTok{ add your handling code here:}
+            \ControlFlowTok{catch} \OperatorTok{(}\BuiltInTok{SQLException}\NormalTok{ ex}\OperatorTok{)} \OperatorTok{\{}
+                \BuiltInTok{Logger}\OperatorTok{.}\FunctionTok{getLogger}\OperatorTok{(}\NormalTok{medinventory}\OperatorTok{.}\FunctionTok{class}\OperatorTok{.}\FunctionTok{getName}\OperatorTok{()).}\FunctionTok{log}\OperatorTok{(}\BuiltInTok{Level}\OperatorTok{.}\FunctionTok{SEVERE}\OperatorTok{,} \KeywordTok{null}\OperatorTok{,}\NormalTok{ ex}\OperatorTok{);}
+            \OperatorTok{\}}
+        \OperatorTok{\}}
+    \OperatorTok{\}}                                   
+
+    \CommentTok{/**}
+\CommentTok{     * @}\NormalTok{param args the command line arguments}
+     \CommentTok{*/}
+    \KeywordTok{public} \DataTypeTok{static} \DataTypeTok{void} \FunctionTok{main}\OperatorTok{(}\BuiltInTok{String}\NormalTok{ args}\OperatorTok{[])} \OperatorTok{\{}
+        \CommentTok{/* Set the Nimbus look and feel */}
+        \CommentTok{//\textless{}editor{-}fold defaultstate="collapsed" desc=" Look and feel setting code (optional) "\textgreater{}}
+        \CommentTok{/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.}
+\CommentTok{         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html }
+\CommentTok{         */}
+        \ControlFlowTok{try} \OperatorTok{\{}
+            \ControlFlowTok{for} \OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{UIManager}\OperatorTok{.}\FunctionTok{LookAndFeelInfo}\NormalTok{ info }\OperatorTok{:}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{UIManager}\OperatorTok{.}\FunctionTok{getInstalledLookAndFeels}\OperatorTok{())} \OperatorTok{\{}
+                \ControlFlowTok{if} \OperatorTok{(}\StringTok{"Nimbus"}\OperatorTok{.}\FunctionTok{equals}\OperatorTok{(}\NormalTok{info}\OperatorTok{.}\FunctionTok{getName}\OperatorTok{()))} \OperatorTok{\{}
+\NormalTok{                    javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{UIManager}\OperatorTok{.}\FunctionTok{setLookAndFeel}\OperatorTok{(}\NormalTok{info}\OperatorTok{.}\FunctionTok{getClassName}\OperatorTok{());}
+                    \ControlFlowTok{break}\OperatorTok{;}
+                \OperatorTok{\}}
+            \OperatorTok{\}}
+        \OperatorTok{\}} \ControlFlowTok{catch} \OperatorTok{(}\BuiltInTok{ClassNotFoundException}\NormalTok{ ex}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{            java}\OperatorTok{.}\FunctionTok{util}\OperatorTok{.}\FunctionTok{logging}\OperatorTok{.}\FunctionTok{Logger}\OperatorTok{.}\FunctionTok{getLogger}\OperatorTok{(}\NormalTok{medinventory}\OperatorTok{.}\FunctionTok{class}\OperatorTok{.}\FunctionTok{getName}\OperatorTok{()).}\FunctionTok{log}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{util}\OperatorTok{.}\FunctionTok{logging}\OperatorTok{.}\FunctionTok{Level}\OperatorTok{.}\FunctionTok{SEVERE}\OperatorTok{,} \KeywordTok{null}\OperatorTok{,}\NormalTok{ ex}\OperatorTok{);}
+        \OperatorTok{\}} \ControlFlowTok{catch} \OperatorTok{(}\BuiltInTok{InstantiationException}\NormalTok{ ex}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{            java}\OperatorTok{.}\FunctionTok{util}\OperatorTok{.}\FunctionTok{logging}\OperatorTok{.}\FunctionTok{Logger}\OperatorTok{.}\FunctionTok{getLogger}\OperatorTok{(}\NormalTok{medinventory}\OperatorTok{.}\FunctionTok{class}\OperatorTok{.}\FunctionTok{getName}\OperatorTok{()).}\FunctionTok{log}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{util}\OperatorTok{.}\FunctionTok{logging}\OperatorTok{.}\FunctionTok{Level}\OperatorTok{.}\FunctionTok{SEVERE}\OperatorTok{,} \KeywordTok{null}\OperatorTok{,}\NormalTok{ ex}\OperatorTok{);}
+        \OperatorTok{\}} \ControlFlowTok{catch} \OperatorTok{(}\BuiltInTok{IllegalAccessException}\NormalTok{ ex}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{            java}\OperatorTok{.}\FunctionTok{util}\OperatorTok{.}\FunctionTok{logging}\OperatorTok{.}\FunctionTok{Logger}\OperatorTok{.}\FunctionTok{getLogger}\OperatorTok{(}\NormalTok{medinventory}\OperatorTok{.}\FunctionTok{class}\OperatorTok{.}\FunctionTok{getName}\OperatorTok{()).}\FunctionTok{log}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{util}\OperatorTok{.}\FunctionTok{logging}\OperatorTok{.}\FunctionTok{Level}\OperatorTok{.}\FunctionTok{SEVERE}\OperatorTok{,} \KeywordTok{null}\OperatorTok{,}\NormalTok{ ex}\OperatorTok{);}
+        \OperatorTok{\}} \ControlFlowTok{catch} \OperatorTok{(}\NormalTok{javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{UnsupportedLookAndFeelException}\NormalTok{ ex}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{            java}\OperatorTok{.}\FunctionTok{util}\OperatorTok{.}\FunctionTok{logging}\OperatorTok{.}\FunctionTok{Logger}\OperatorTok{.}\FunctionTok{getLogger}\OperatorTok{(}\NormalTok{medinventory}\OperatorTok{.}\FunctionTok{class}\OperatorTok{.}\FunctionTok{getName}\OperatorTok{()).}\FunctionTok{log}\OperatorTok{(}\NormalTok{java}\OperatorTok{.}\FunctionTok{util}\OperatorTok{.}\FunctionTok{logging}\OperatorTok{.}\FunctionTok{Level}\OperatorTok{.}\FunctionTok{SEVERE}\OperatorTok{,} \KeywordTok{null}\OperatorTok{,}\NormalTok{ ex}\OperatorTok{);}
+        \OperatorTok{\}}
+        \CommentTok{//\textless{}/editor{-}fold\textgreater{}}
+
+        \CommentTok{/* Create and display the form */}
+\NormalTok{        java}\OperatorTok{.}\FunctionTok{awt}\OperatorTok{.}\FunctionTok{EventQueue}\OperatorTok{.}\FunctionTok{invokeLater}\OperatorTok{(}\KeywordTok{new} \BuiltInTok{Runnable}\OperatorTok{()} \OperatorTok{\{}
+            \KeywordTok{public} \DataTypeTok{void} \FunctionTok{run}\OperatorTok{()} \OperatorTok{\{}
+                \KeywordTok{new} \FunctionTok{medinventory}\OperatorTok{().}\FunctionTok{setVisible}\OperatorTok{(}\KeywordTok{true}\OperatorTok{);}
+            \OperatorTok{\}}
+        \OperatorTok{\});}
+    \OperatorTok{\}}
+
+    \CommentTok{// Variables declaration {-} do not modify                     }
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JButton}\NormalTok{ jButton1}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JButton}\NormalTok{ jButton2}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\NormalTok{ jLabel1}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\NormalTok{ jLabel2}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\NormalTok{ jLabel3}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\NormalTok{ jLabel4}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\NormalTok{ jLabel5}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\NormalTok{ jLabel6}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\NormalTok{ jLabel7}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JLabel}\NormalTok{ jLabel8}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JPanel}\NormalTok{ jPanel1}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JPanel}\NormalTok{ jPanel2}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JScrollPane}\NormalTok{ jScrollPane1}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTable}\NormalTok{ jTable1}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTextField}\NormalTok{ txtbal}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTextField}\NormalTok{ txtdcode}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTextField}\NormalTok{ txtdname}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTextField}\NormalTok{ txtpay}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTextField}\NormalTok{ txtprice}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JSpinner}\NormalTok{ txtqty}\OperatorTok{;}
+    \KeywordTok{private}\NormalTok{ javax}\OperatorTok{.}\FunctionTok{swing}\OperatorTok{.}\FunctionTok{JTextField}\NormalTok{ txttcost}\OperatorTok{;}
+    \CommentTok{// End of variables declaration                   }
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}

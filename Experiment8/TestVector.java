@@ -2,7 +2,7 @@ import java.util.*;
 class TestVector 
 {  
     public static void main(String args[]) 
-    {  
+    {
         Vector<Integer> vec = new Vector<Integer>();
         System.out.println("\tCapacity of vec: " + vec.capacity());
         System.out.println("\tSize of vec: " + vec.size());

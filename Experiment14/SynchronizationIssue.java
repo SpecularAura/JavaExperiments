@@ -14,11 +14,13 @@ class Account
         if(balance - value < 0)
         {
             System.out.println("Cannot Withdraw");
-            return;
         }
-        balance = balance - value;
+        else
+        {
+            balance = balance - value;
+        }
     }
-    synchronized public void depositTimes(int value, int times)
+    public void depositTimes(int value, int times)
     {
         for(int i = 0; i < times; i++)
         {
@@ -27,7 +29,7 @@ class Account
         }
     }
 
-    synchronized public void withdrawTimes(int value, int times)
+    public void withdrawTimes(int value, int times)
     {
         for(int i = 0; i < times; i++)
         {

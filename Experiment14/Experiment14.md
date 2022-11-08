@@ -219,57 +219,87 @@ Fibo term 15: 377
 \Large Program on concept of synchronization	 \normalsize \newline
 \Huge Code: \normalsize
 ```{.Java .numberLines}
-
-class PrintValue
+class Account
 {
-    public void printValue(int num, int i)
+    int balance;
+    public Account(int balance)
     {
-        System.out.println(num + "*" + i + ": " + num * i);
+        this.balance = balance;
+    }
+    public void deposit(int value)
+    {
+        balance = balance + value;
+    }
+    public void withdraw(int value)
+    {
+        if(balance - value < 0)
+        {
+            System.out.println("Cannot Withdraw");
+        }
+        else
+        {
+            balance = balance - value;
+        }
+    }
+    public void depositTimes(int value, int times)
+    {
+        for(int i = 0; i < times; i++)
+        {
+            deposit(value);
+            System.out.println("Balance: " + balance);
+        }
+    }
+
+    public void withdrawTimes(int value, int times)
+    {
+        for(int i = 0; i < times; i++)
+        {
+            withdraw(value);
+            System.out.println("Balance: " + balance);
+        }
     }
 }
-class Table implements Runnable
+class ATM implements Runnable
 {
-    PrintValue pv;
-    int num;
+    Account ac;
     Thread t;
-    public Table(int num, PrintValue pv)
+    public ATM(Account ac)
     {
-        this.num = num;
-        this.pv = pv;
-        t = new Thread(this, "Table of " + num);
-    }
-    private void printTable()
-    {
-        for (int i = 1; i <= 10; i++)
-        {
-            synchronized(pv)
-            {
-                pv.printValue(num, i);
-            }
-        }
+        t = new Thread(this, "ATM");
+        this.ac = ac;
     }
     public void run()
     {
-        printTable();
+        ac.withdrawTimes(500, 10);
     }
 }
-class MultiThreading 
+class Bank implements Runnable
+{
+    Account ac;
+    Thread t;
+    public Bank(Account ac)
+    {
+        t = new Thread(this, "Bank");
+        this.ac = ac;
+    }
+    public void run()
+    {
+        ac.depositTimes(500, 10);
+    }
+}
+class SynchronizationIssue
 {
     public static void main(String args[])
     {
-        PrintValue pv = new PrintValue();
-        Table t1 = new Table(3, pv);
-        Table t2 = new Table(5, pv);
-        Table t3 = new Table(7, pv);
-        t1.t.start();
-        t2.t.start();
-        t3.t.start();
-
+        Account ac = new Account(500);
+        Bank bank = new Bank(ac);
+        ATM atm = new ATM(ac);
+        bank.t.start();
+        atm.t.start();
         try
         {
-            t1.t.join();
-            t2.t.join();
-            t3.t.join();
+            bank.t.join();
+            atm.t.join();
         }
         catch(InterruptedException e)
         {
@@ -305,8 +335,8 @@ Balance: 1500
 Balance: 2000
 Balance: 2500
 ```
-\large If we make the functions with operating on the shared data synchronized the only one thread will be able to access it at once
-Thus first all the withdraws will occur after all the deposits \normalsize \newpage
+\large If we make the functions operating on the shared data synchronized then only one thread will be able to access it at once
+Thus all the withdraws will occur after all the deposits \normalsize \newpage
 \Huge Code: \normalsize
 ```{.Java .numberLines}
 class Account

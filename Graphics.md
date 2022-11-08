@@ -10,310 +10,426 @@ header-includes:
 fontsize: 10pt
 geometry: left=2cm,right=2cm,top=0cm,bottom=2cm
 ---
-**Code:**
+**Vertex Shader:**
+\Large Code: \normalsize
+```{.numberLines}
+#version 330 core
+
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 aColor;
+layout (location = 2) in vec2 aTexCoord;
+
+out vec2 TexCoord;
+out vec3 ourColor;
+
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
+
+void main()
+{
+    gl_Position = projection * view * model * vec4(aPos, 1.0f);
+    TexCoord = aTexCoord;
+    ourColor = aColor;
+}
+```
+**Fragment Shader:**
+\Large Code: \normalsize
+```{.numberLines}
+#version 330 core
+
+in vec2 TexCoord;
+in vec3 ourColor;
+
+out vec4 FragColor;
+
+uniform sampler2D texture1;
+uniform sampler2D texture2;
+
+void main()
+{
+    FragColor = texture(texture1, TexCoord);
+}
+```
+**Main File:**
 ```{.C .numberLines}
-#include<stdio.h>
-#include<conio.h>
-#include<stdlib.h>
-#include<graphics.h>
-#include<math.h>
-typedef enum
-{
-    TRANSLATE, SCALE, ROTATE, ROTATEAAA, SHEAR, REFLECT
-}Operation;
-typedef struct Matrix
-{
-    int rows, columns;
-    double matrix[4][4];
-}Matrix;
-typedef struct
-{
-    int sides;
-    Matrix* arr;
-}Shape;
-Shape initShape(int arr[], int sides);
-Shape applyTransform(Shape shape, Operation op);
-void drawShape(Shape shape);
-void destroyShape(Shape shape);
-Matrix initMatrix(int rows, int columns);
-void printMatrix(Matrix m);
-Matrix multiplyMatrix(Matrix m1, Matrix m2);
-Matrix setMatDataAt(int data, Matrix mat, int row, int column);
-Matrix initHomoTransform();
-Matrix translate(int tx, int ty);
-Matrix scale(double sx, double sy);
-Matrix rotate(int angle);
-Matrix rotateAbout(int angle, int anchorx, int anchory);
-Matrix shear(double shx, int x_axis);
+#include "Main_include.hpp"
 
-Shape initShape(int arr[], int sides)
-{
-    int i, j, k;
-    Shape shape;
-    shape.sides = sides;
-    shape.arr = (Matrix*)malloc((sides + 1)* sizeof(Matrix));
-    k = 0;
-    for( i = 0; i < sides + 1 ; i++)
-    {
-        *(shape.arr + i) = initMatrix(3, 1);
-        *(shape.arr + i) = setMatDataAt(1, *(shape.arr + i), 2, 0);
-        for( j = 0; j < 2; j++)
-        {
-            *(shape.arr + i) = setMatDataAt(arr[k], *(shape.arr + i), j, 0 );
-            k++;
-        }
-    }
-    return shape;
-}
-Shape applyTransform(Shape shape, Operation op)
-{
-    int i;
-    double d1, d2, d3, d4;
-    Matrix transform = initHomoTransform();
-    switch(op)
-    {
-        case TRANSLATE:
-            printf("Enter tx & ty: ");
-            scanf("%lf%lf", &d1, &d2);
-            transform = translate((int) d1, (int) d2);
-            break;
-        case SCALE:
-            printf("Enter sx & asy: ");
-            scanf("%lf%lf", &d1, &d2);
-            transform = translate(- (*(shape.arr)).matrix[0][0], 
-																	- (*(shape.arr)).matrix[1][0]);
-            transform = multiplyMatrix(scale(d1,d2), transform);
-            transform = multiplyMatrix(
-                translate((*(shape.arr)).matrix[0][0], (*(shape.arr)).matrix[1][0])
-                , transform);
-            break;
-        case ROTATE:
-            printf("Enter the angle to rotate with: ");
-            scanf("%lf", &d1);
-            transform = translate(- (*(shape.arr)).matrix[0][0], 
-																	- (*(shape.arr)).matrix[1][0]);
-            transform = multiplyMatrix(rotate((int)d1), transform);
-            transform = multiplyMatrix(
-                translate((*(shape.arr)).matrix[0][0], (*(shape.arr)).matrix[1][0])
-                , transform);
-            break;
-        case ROTATEAAA:
-            printf("Enter the point about which to rotate: ");
-            scanf("%lf%lf", &d1, &d2);
-            printf("Enter the angle: ");
-            scanf("%lf", &d3);
-            transform = translate(- (int)d1, - (int)d2);
-            transform = multiplyMatrix(rotate((int)d3), transform);
-            transform = multiplyMatrix(
-                translate((int) d1, (int) d2)
-                , transform);
-            break;
-        case SHEAR:
-            printf("Enter the shear factor: ");
-            scanf("%lf", &d1);
-            printf("Enter 1 for shearing about X-axis or 0 for shearing about Y-axis: ");
-            scanf("%d", &i);
-            transform = translate(- (*(shape.arr)).matrix[0][0], 
-																	-(*(shape.arr)).matrix[1][0]);
-            transform = multiplyMatrix(shear(d1, i), transform);
-            transform = multiplyMatrix(
-                translate((*(shape.arr)).matrix[0][0], (*(shape.arr)).matrix[1][0])
-                , transform);
-                break;
-        case REFLECT:
-            for(i = 0; i < shape.sides + 1; i++)
-            {
-                (shape.arr + i)->matrix[0][0] = ((double) getmaxx() - (shape.arr + i)->matrix[0][0]);
-            }
-            return shape;
-            break;
-        default:
-        printf("Shouldn't Be Here");
-    }
-    for( i = 0; i < shape.sides + 1; i++)
-    {
-       *(shape.arr + i) = multiplyMatrix(transform, *(shape.arr + i));
-    }
-    return shape;
-}
+void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+void processInput(GLFWwindow *window, Camera* camera);
+void RecursiveTriangle(unsigned int transformID, glm::mat4 mat, const glm::vec3& translate, int depth);
 
-void drawShape(Shape shape)
-{
-    int i, j, k;
-    int result2[20];
-    k = 0;
-    for( i = 0; i < shape.sides + 1 ; i++)
-    {
-        for( j = 0; j < 2; j++)
-        {
-            // printMatrix(*(shape.arr + i));
-            result2[k] = (*(shape.arr + i)).matrix[j][0];
-            k++;
-        }
-    }
-    drawpoly(shape.sides + 1, result2);
-    getch();
-    cleardevice();
-}
-void destroyShape(Shape shape)
-{
-    int i;
-    for( i = 0; i < shape.sides + 1; i++)
-    {
-       free((shape.arr + i));
-    }
-}
-Matrix initMatrix(int rows, int columns)
-{
-    int i,j;
-    Matrix m;
-    m.rows = rows;
-    m.columns = columns;
-    for(i = 0; i < rows; i++)
-    {
-        for(j = 0; j < columns; j++)
-        {
-            m.matrix[i][j] = 0;
-        }
-    }
-    return m;
-}
-void printMatrix(Matrix m)
-{
-    int i,j;
-    for(i = 0; i < m.rows; i++)
-    {
-        for(j = 0; j < m.columns; j++)
-        {
-            printf("%lf", m.matrix[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
+// settings
+const unsigned int SCR_WIDTH = 800;
+const unsigned int SCR_HEIGHT = 600;
 
-}
-Matrix multiplyMatrix(Matrix m1, Matrix m2)
-{
-    int i, j, k;
-    Matrix mult = initMatrix(m1.rows, m2.columns);
-    for( i = 0; i < m1.rows; i++)
-    {
-        for( j = 0; j < m2.columns; j++)
-        {
-            for( k = 0; k < m2.rows; k++)
-            {
-                mult.matrix[i][j] = mult.matrix[i][j] + m1.matrix[i][k] * m2.matrix[k][j];
-            }
-        }
-    }
-    return mult;
-}
-Matrix setMatDataAt(int data, Matrix mat, int row, int column)
-{
-    mat.matrix[row][column] = data;
-    return mat;
-}
-Matrix initHomoTransform()
-{
-    int i,j;
-    Matrix m;
-    m.rows = 3;
-    m.columns = 3;
-    for(i = 0; i < m.rows; i++)
-    {
-        for(j = 0; j < m.columns; j++)
-        {
-            if( i == j )
-            {
-                m.matrix[i][j] = 1;
-            }
-            else
-            {
-                m.matrix[i][j] = 0;
-            }
-        }
-    }
-    return m;
-}
-Matrix translate(int tx, int ty)
-{
-    Matrix m;
-    m = initHomoTransform();
-    m.matrix[0][2] = tx;
-    m.matrix[1][2] = ty;
-    return m;
-}
-Matrix scale(double sx, double sy)
-{
-    Matrix m;
-    m = initHomoTransform();
-    m.matrix[0][0] = sx;
-    m.matrix[1][1] = sy;
-    return m;
-}
-Matrix shear(double sh, int x_axis)
-{
-    Matrix m = initHomoTransform();
-    if(x_axis)
-    {
-        m.matrix[0][1] = sh;
-    }
-    else
-    {
-        m.matrix[1][0] = sh;
-    }
-    return m;
-}
-Matrix rotate(int angle)
-{
-    Matrix m;
-    double inRadians = (angle * 3.1415926535 / 180);
-    m = initHomoTransform();
-    m.matrix[0][0] = cos(inRadians);
-    m.matrix[0][1] = - sin(inRadians);
-    m.matrix[1][0] = sin(inRadians);
-    m.matrix[1][1] = cos(inRadians);
-    return m;
-}
 
 int main()
 {
-    int gd = DETECT, gm, length, sides, i, j, k;
-    int vertices[20], result2[20];
-    Shape shapeT, shapeS, shapeR, shapeSh, shapeRe;
-    Matrix transform = initHomoTransform();
-    vertices[0] = 200;
-    vertices[1] = 250;
-    vertices[2] = 250;
-    vertices[3] = 250;
-    vertices[4] = 250;
-    vertices[5] = 300;
-    vertices[6] = 200;
-    vertices[7] = 300;
-    vertices[8] = 200;
-    vertices[9] = 250;
-    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
-    printf("Enter the number of sides: ");
-    scanf("%d", &sides);
-    shapeT = initShape(vertices, sides);
-    shapeS = initShape(vertices, sides);
-    shapeSh = initShape(vertices, sides);
-    shapeR = initShape(vertices, sides);
-    shapeRe = initShape(vertices, sides);
-    drawShape(shapeT);
-    shapeT = applyTransform(shapeT, TRANSLATE);
-    drawShape(shapeT);
-    shapeS = applyTransform(shapeS, SCALE);
-    drawShape(shapeS);
-    shapeR = applyTransform(shapeR, ROTATE);
-    drawShape(shapeR);
-    shapeSh = applyTransform(shapeSh, SHEAR);
-    drawShape(shapeSh);
-    printf("Reflection: ");
-    shapeRe = applyTransform(shapeSh, REFLECT);
-    drawShape(shapeRe);
-    getch();
-    closegraph();
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    if (window == NULL)
+    {
+        std::cout << "Failed to create GLFW window" << std::endl;
+        glfwTerminate();
+        return -1;
+    }
+    glfwMakeContextCurrent(window);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetScrollCallback(window, scroll_callback);
+
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    {
+        std::cout << "Failed to initialize GLAD" << std::endl;
+        return -1;
+    }
+    glEnable(GL_DEPTH_TEST);
+    Shader t1Shader("Shaders/rotating_pyramid.glvs", "Shaders/rotating_pyramid.glfs");
+
+    // set up vertex data (and buffer(s)) and configure vertex attributes
+    // ------------------------------------------------------------------
+    float vertices[] = {
+         0.0f, -1.0f,  0.0f, 1.0f, 0.0f, 0.0f, 0.5f, 0.0f, 
+        -1.0f,  1.0f,  1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+         1.0f,  1.0f,  1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // first triangle
+         0.0f, -1.0f,  0.0f, 1.0f, 0.0f, 0.0f, 0.5f, 0.0f,
+         1.0f,  1.0f,  1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+         1.0f,  1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // second triangle
+         0.0f, -1.0f,  0.0f, 1.0f, 0.0f, 0.0f, 0.5f, 0.0f,
+         1.0f,  1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+        -1.0f,  1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // third triangle
+         0.0f, -1.0f,  0.0f, 1.0f, 0.0f, 0.0f, 0.5f, 0.0f,
+        -1.0f,  1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+        -1.0f,  1.0f,  1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // fourth triangle
+        -1.0f,  1.0f,  1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+         1.0f,  1.0f,  1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+         1.0f,  1.0f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+        -1.0f,  1.0f,  1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+         1.0f,  1.0f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+        -1.0f,  1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f
+
+    };
+    unsigned int VBO, VAO;
+    // unsigned int EBO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    //glGenBuffers(1, &EBO);
+    // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    //glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3*sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    glEnableVertexAttribArray(2);
+
+    //load and create texture 
+    //-----------------------
+    unsigned int texture1, texture2;
+    glGenTextures(1, &texture1);
+    glBindTexture(GL_TEXTURE_2D, texture1);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+    int width,height,nrChannels;
+
+    stbi_set_flip_vertically_on_load(true);
+    unsigned char* data = stbi_load("media/container.jpg", &width, &height, &nrChannels, 0);
+    if(data)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }  
+    else
+    {
+        std::cout<<"Failed to load data";
+    }
+    stbi_image_free(data);
+
+    glGenTextures(1, &texture2);
+    glBindTexture(GL_TEXTURE_2D, texture2);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+    data = stbi_load("media/awesomeface.png", &width, &height, &nrChannels, 0);
+    if(data)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout<<"Failed to load data";
+    }
+    stbi_image_free(data);
+
+    Camera cam1{glm::vec3(0.0f, 0.0f, 3.0f)};
+    glfwSetWindowUserPointer(window, (void*)(&cam1));
+
+    t1Shader.use();
+    t1Shader.setUniform("texture1", 0);
+    t1Shader.setUniform("texture2", 1);
+    // render loop
+    // -----------
+    while (!glfwWindowShouldClose(window))
+    {
+
+        // input
+        // -----
+        processInput(window, &cam1);
+
+        // render
+        // ------
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture1);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, texture2);
+        
+        glm::mat4 projection{1.0f};
+        projection = glm::perspective(glm::radians(cam1.GetZoom()), 
+                    16.0f/9.0f, 0.1f, 100.0f);
+        
+        t1Shader.setUniform("projection", projection);
+        
+        t1Shader.setUniform("view", cam1.ViewMatrix());
+
+
+        RecursiveTriangle(glGetUniformLocation(t1Shader.shaderProgramID,"model"), 
+                          glm::mat4(1.0f), glm::vec3(0.0f,-0.5f,0.0f), 5);
+
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 18);
+        
+
+        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+        // -------------------------------------------------------------------------------
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+
+    // optional: de-allocate all resources once they've outlived their purpose:
+    // ------------------------------------------------------------------------
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    //glDeleteBuffers(1, &EBO);
+    // glfw: terminate, clearing all previously allocated GLFW resources.
+    // ------------------------------------------------------------------
+    glfwTerminate();
     return 0;
+}
+
+// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
+void processInput(GLFWwindow *window, Camera* camera)
+{
+    static float lastframe{0.0f};
+    static float currentframe{0.0f};
+    static float deltatime{0.0f};
+    static int state{GLFW_CURSOR_NORMAL};
+
+    currentframe = (float)glfwGetTime();
+    deltatime = currentframe - lastframe;
+    lastframe = currentframe;
+
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    {glfwSetWindowShouldClose(window, true);}
+    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS
+        && glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
+    {
+        glfwSetInputMode(window, GLFW_CURSOR, state);
+        state = (state == GLFW_CURSOR_NORMAL ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
+    }
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+    {camera->MoveCamera(CameraMovement::FORWARD, deltatime);}
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+    {camera->MoveCamera(CameraMovement::BACKWARD, deltatime);}
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+    {camera->MoveCamera(CameraMovement::LEFT, deltatime);}
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+    {camera->MoveCamera(CameraMovement::RIGHT, deltatime);}
+}
+
+// glfw: whenever the window size changed (by OS or user resize) this callback function executes
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    glViewport(0, 0, width, height);
+}
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    static bool firstMouse{true};
+    static float lastX{(float)SCR_WIDTH / 2.0f};
+    static float lastY{(float)SCR_HEIGHT / 2.0f};
+    if (firstMouse)
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+    lastX = xpos;
+    lastY = ypos;
+
+    Camera* camera = (Camera*)glfwGetWindowUserPointer(window);
+    camera->RotateCamera(xoffset, yoffset);
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    Camera* camera = (Camera*)glfwGetWindowUserPointer(window);
+    camera->ZoomCamera(yoffset);
+}
+
+void RecursiveTriangle(unsigned int transformID, glm::mat4 mat, const glm::vec3& translate, int depth)
+{
+    if (depth == 0)
+    {
+        return;
+    }
+    mat = glm::translate(mat, translate);
+    mat = glm::scale(mat, glm::vec3(0.5f, 0.5f, 0.5f));
+    glm::mat4 matnew = mat;
+    mat = glm::rotate(mat, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
+
+    glUniformMatrix4fv(transformID, 1, GL_FALSE, &mat[0][0]);
+    glDrawArrays(GL_TRIANGLES, 0, 18);
+    --depth;
+    RecursiveTriangle(transformID, matnew, glm::vec3(0.0f, 1.7f, 0.0f), depth);
+    RecursiveTriangle(transformID, matnew, glm::vec3(-1.4f, -0.5f, 0.0f), depth);
+    RecursiveTriangle(transformID, matnew, glm::vec3(1.4f,  -0.5f, 0.0f), depth);
+}
+```
+**Camera Movement Logic:**
+\Large Code: \normalsize
+```{.C .numberLines}
+#include "Camera.hpp"
+
+Camera::Camera(glm::vec3 position ,
+               glm::vec3 wup ,
+               float yaw, float pitch ) :
+               Position{position}, WorldUp{wup}, Front{0.0f, 0.0f, -1.0f}, Yaw{yaw}, Pitch{pitch},
+               MovementSpeed{SPEED}, MouseSensitivity{SENSITIVITY}, Zoom{ZOOM}
+{
+    UpdateCamera();
+}
+
+Camera::Camera(float posX, float posY, float posZ,
+           float wupX, float wupY, float wupZ) : Camera(glm::vec3(posX,posY,posZ), 
+                                                        glm::vec3(wupX, wupY,wupZ))
+{
+}
+void Camera::UpdateCamera()
+{
+    glm::vec3 front;
+    front.x = glm::cos(glm::radians(Yaw)) * glm::cos(glm::radians(Pitch));
+    front.y = glm::sin(glm::radians(Pitch));
+    front.z = glm::sin(glm::radians(Yaw)) * glm::cos(glm::radians(Pitch));
+    Front   = glm::normalize(front);
+
+    Right = glm::normalize(glm::cross(Front, WorldUp));
+    Up    = glm::normalize(glm::cross(Right, Front));
+}
+
+void Camera::MoveCamera(CameraMovement direction, float deltatime)
+{
+    float velocity = MovementSpeed * deltatime;
+    if(direction == CameraMovement::FORWARD)
+        Position += velocity * Front;
+    if(direction == CameraMovement::BACKWARD)
+        Position -= velocity * Front;
+    if(direction == CameraMovement::LEFT)
+        Position -= velocity * Right;
+    if(direction == CameraMovement::RIGHT)
+        Position += velocity * Right;
+}
+
+void Camera::RotateCamera(float xoffset, float yoffset, bool constrainPitch)
+{
+    Yaw   += xoffset * MouseSensitivity;
+    Pitch += yoffset * MouseSensitivity;
+
+    if (constrainPitch)
+    {
+        if (Pitch > 89.0f)
+        {
+            Pitch = 89.0f;
+        }
+        else if (Pitch < -89.0f)
+        {
+            Pitch = -89.0f;
+        }
+    }
+    UpdateCamera();
+}
+
+void Camera::ZoomCamera(float yoffset)
+{
+    Zoom -= (float)yoffset;
+    if (Zoom < 1.0f)
+        Zoom = 1.0f;
+    if (Zoom > 45.0f)
+        Zoom = 45.0f;
+}
+
+glm::mat4 Camera::ViewMatrix()
+{
+    return glm::lookAt(Position, Position + Front, WorldUp);
+}
+
+glm::mat4 Camera::lookat(const glm::vec3& eye, const glm::vec3& center, const glm::vec3& up)
+{
+    glm::vec3 Direction{eye - center};
+    glm::vec3 Right{glm::normalize(glm::cross(up, Direction))};
+    glm::vec3 Camup{glm::normalize(glm::cross(Direction, Right))};
+
+    glm::mat4 lookat{1.0f};
+    lookat[0][0] = Right.x;
+    lookat[0][1] = Camup.x;
+    lookat[0][2] = Direction.x; 
+    lookat[1][0] = Right.y;
+    lookat[1][1] = Camup.y;
+    lookat[1][2] = Direction.y;
+    lookat[2][0] = Right.z;
+    lookat[2][1] = Camup.z;
+    lookat[2][2] = Direction.z;
+    lookat[3][0] = - glm::dot(eye, Right);
+    lookat[3][1] = - glm::dot(eye, Camup);
+    lookat[3][2] = - glm::dot(eye, Direction);
+    return lookat;
+
+}
+
+
+float Camera::GetZoom()
+{
+    return Zoom;
 }
 ```

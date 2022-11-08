@@ -15,7 +15,7 @@ class Operations
     public static double sqrt(double num)
     {
         double i;
-        for(i = 0; !(i*i > num); i = i + 0.01);
+        for(i = 0; i*i < num; i = i + 0.0001);
         return i;
     }
 }

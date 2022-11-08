@@ -2,32 +2,41 @@ import java.util.Scanner;
 
 class TemperatureTooLowException extends Exception
 {
-    TemperatureTooLowException(String msg)
+    double temperature;
+    TemperatureTooLowException(double temperature)
     {
-        super(msg);
+        super("Temperature is less than " + temperature + " degrees");
+        this.temperature = temperature;
     }
 }
 
 class UserDefinedException 
 {
+    public static void checkTemperature(double temperature, double threshold) throws TemperatureTooLowException
+    {
+        if(temperature < threshold)
+        {
+            throw new TemperatureTooLowException(threshold);
+        }
+    }
+    public static double inputTemperature() throws TemperatureTooLowException
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the Temperature: ");
+        double temperature = sc.nextDouble();
+        checkTemperature(temperature, 4);
+        return temperature;
+    }
     public static void main(String args[])
     {
-        Scanner s = new Scanner(System.in);
         try
         {
-            double temperature = s.nextInt();
-            if(temperature < 4.00)
-            {
-                throw new TemperatureTooLowException("Temperature is Less than 4 degree");
-            }
-            else
-            {
-            System.out.println("Input Temperature = "+temperature);
-            } 
+            double temperature = inputTemperature();
+            System.out.println("The temperature read is: " + temperature); 
         }
         catch(TemperatureTooLowException obj)
         {
-            System.out.println("Exception Caught");
+            System.out.println("Exception Caught: ");
             System.out.println(obj);
         }
     }
