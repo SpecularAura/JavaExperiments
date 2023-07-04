@@ -3,38 +3,29 @@ Title: Java Experiments
 ---
 
 1. Write a program using command line argument in java.
-	- [ ] Echoing Command-Line Arguments.
-	- [ ] Parsing Numeric Command-Line arguments.
+	1. [Echoing Command-Line Arguments.](./Experiment1/CommandArgsEcho.java)
+	2. [Parsing Numeric Command-Line arguments.](./Experiment1/CmdArgsParseNum.java)
 
-2. Programs on Basic programming constructs like branching and looping.
-	- [ ] WAP to print the roots of quadratic equation.
-	- [ ] WAP to check if entered number is a prime number.
-
-  
-	Study of different operators in java
-	- [ ] WAP to compare two numbers.
-	- [ ] WAP to print truth table for java logical operators.
-	- [ ] WAP to read the number & shift left & right by 3 bits
+2. Programs on Basic programming constructs .
+	Branching and looping:
+		1. [WAP to print the roots of quadratic equation.](./Experiment2/Roots.java)
+		2. [WAP to check if entered number is a prime number.](./Experiment2/TestPrime.java)
+	Study of different operators in java:
+		3. [WAP to compare two numbers.](./Experiment2/TestCompare.java)
+		4. [WAP to print truth table for java logical operators.](./Experiment2/LogicalOperators.java)
+		5. [WAP to read the number & shift left & right by 3 bits](./Experiment2/BitShift.java)
 
 3. Program on accepting input through keyboard.
-  - [ ] Print the Fibonacci series upto the nth term
-taking the value of n from the user.
-  - [ ] WAP to reverse the given no.
-  - [ ] WAP to calculate area & circumference of circle
-  - [ ] WAP to swap given two strings
-  - [ ] WAP to convert temperature from Fahrenheit to
-Celsius
-  - [ ] WAP to find a square, square root, and Cube of
-a given no. using abstraction
+	1. Print the Fibonacci series upto the nth term taking the value of n from the user.
+	2. WAP to reverse the given no.
+	3. WAP to calculate area & circumference of circle
+	4. WAP to swap given two strings
+	5. WAP to convert temperature from Fahrenheit to Celsius
+	6. WAP to find a square, square root, and Cube of a given no. using abstraction
 
 4. Study of Objects and Classes  
-Define a class to represent a bank account. Include the
-following members:  
-Data:  
-name of the depositor  
-account number  
-type of account  
-balance amount in the account  
+Define a class to represent a bank account. Include the following members:  
+`Name of the depositor, Account number, Type of account, Balance amount in the account `
 	Methods:  
 	1. To assign initial values  
 	2. To deposit an amount  
@@ -50,34 +41,29 @@ WAP to implement following constructors
 	1. Default constructor
 	2. Parameterized constructor
 
-6. Program on Packages
-	- [ ] Write a Program to demonstrate user defined Packages.
+6. Program on Packages  
+Write a Program to demonstrate user defined Packages.
 
 7. Program on 2D array, strings functions
-	- [ ] To check if the entered matrix is symmetric or not.
-	- [ ] To perform Matrix Multiplication.
-	- [ ] Reverse the string and decide whether it is Palindrome or not and Capitalize the String.
-	- [ ] Program to demonstrate built-in Functions of String Class.
+	1. To check if the entered matrix is symmetric or not.
+	2. To perform Matrix Multiplication.
+	3. Reverse the string and decide whether it is Palindrome or not and Capitalize the String.
+	4. Program to demonstrate built-in Functions of String Class.
 
 8. Program on StringBuffer and Vectors
-	- [ ] Program to demonstrate built-in StringBuffer Functions.
-	- [ ] Program to demonstrate built-in functions of Vector Class.
+	1. Program to demonstrate built-in StringBuffer Functions.
+	2. Program to demonstrate built-in functions of Vector Class.
 
 9. Program on types of inheritance
-	- [ ] Program to demonstrate single inheritance
-	- [ ] Program to demonstrate multilevel Inheritance
-(using Super keyword).
+	1. Program to demonstrate single inheritance
+	2. Program to demonstrate multilevel Inheritance (using Super keyword).
 
 10. Program on Multiple Inheritance
-	- [ ] Program to demonstrate multiple Inheritance
-(using Interfaces).
-	- [ ] Write a program for making one base class and
-two subclasses (student is base class, music
-representative and sport representative derived
-class). Add appropriate properties and methods.
+	1. Program to demonstrate multiple Inheritance (using Interfaces).
+	2. Write a program for making one base class and two subclasses (student is base class, music representative and sport epresentative derived class). Add appropriate properties and methods.
 
-11. Program on abstract class and abstract methods.
-	- [ ] WAP to create an abstract class Shape with abstract
+11. Program on abstract class and abstract methods.  
+WAP to create an abstract class Shape with abstract
 method area(), implement the same in different
 classes Rectangle, circle, triangle.
 Make appropriate use of super and final concepts in

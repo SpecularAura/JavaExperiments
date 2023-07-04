@@ -9,7 +9,11 @@
             "comments": "off",
             "strings": "off"
         },
-        "editor.tabSize": 2,
-        "editor.detectIndentation": false
-    }
+        "editor.tabSize": 4,
+        "editor.detectIndentation": false,
+        "editor.insertSpaces": false
+    },
+    "markdown-preview-enhanced.codeBlockTheme": "atom-dark.css",
+    "markdown-preview-enhanced.previewTheme": "atom-dark.css",
+    "markdown-preview-enhanced.pandocMarkdownFlavor": "gfm"
 }
