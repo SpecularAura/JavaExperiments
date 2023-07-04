@@ -6,14 +6,15 @@ Title: Java Experiments
 	1. [Echoing Command-Line Arguments.](./Experiment1/CommandArgsEcho.java)
 	2. [Parsing Numeric Command-Line arguments.](./Experiment1/CmdArgsParseNum.java)
 
-2. Programs on Basic programming constructs .
+2. Programs on Basic programming constructs.  
 	Branching and looping:
-		1. [WAP to print the roots of quadratic equation.](./Experiment2/Roots.java)
-		2. [WAP to check if entered number is a prime number.](./Experiment2/TestPrime.java)
-	Study of different operators in java:
-		3. [WAP to compare two numbers.](./Experiment2/TestCompare.java)
-		4. [WAP to print truth table for java logical operators.](./Experiment2/LogicalOperators.java)
-		5. [WAP to read the number & shift left & right by 3 bits](./Experiment2/BitShift.java)
+	1. [WAP to print the roots of quadratic equation.](./Experiment2/Roots.java)
+	2. [WAP to check if entered number is a prime number.](./Experiment2/TestPrime.java)<br><br>
+ 
+	Study of different operators in java:  
+	1. [WAP to compare two numbers.](./Experiment2/TestCompare.java)
+	2. [WAP to print truth table for java logical operators.](./Experiment2/LogicalOperators.java)
+	3. [WAP to read the number & shift left & right by 3 bits](./Experiment2/BitShift.java)
 
 3. Program on accepting input through keyboard.
 	1. Print the Fibonacci series upto the nth term taking the value of n from the user.
