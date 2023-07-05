@@ -53,6 +53,12 @@ class Student
 		return result;
 	}
 }
+
+// Representative		Student
+//            \			 /
+// 		       \        /
+//              \      /
+//         MusicRepresentative
 class MusicRepresentative extends Student implements Representative
 {
 	public MusicRepresentative(String name, int rollNo, int year, String division)
@@ -73,6 +79,11 @@ class MusicRepresentative extends Student implements Representative
 		System.out.println(name + " passed a message: " + str);
 	}
 }
+// Representative		Student
+//            \			 /
+// 		       \        /
+//              \      /
+//         SportsRepresentative
 class SportsRepresentative extends Student implements Representative
 {
 	public SportsRepresentative(String name, int rollNo, int year, String division)
