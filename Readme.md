@@ -1,6 +1,4 @@
----
-Title: Java Experiments
----
+# Java Experiments
 
 1. Write a program using command line argument in java.
 	1. [Echoing Command-Line Arguments.](./Experiment1/CommandArgsEcho.java)
