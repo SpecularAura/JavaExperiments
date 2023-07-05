@@ -24,7 +24,7 @@
 
 4. [Study of Objects and Classes](./Experiment4/BankAccountBetter.java)  
 Define a class to represent a bank account. Include the following members:  
-`Name of the depositor, Account number, Type of account, Balance amount in the account `
+`Name of the depositor, Account number, Type of account, Balance amount in the account`  
 	Methods:  
 	1. To assign initial values  
 	2. To deposit an amount  
