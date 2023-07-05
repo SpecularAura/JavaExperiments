@@ -2,4 +2,8 @@
 *.aux
 *.synctex.gz
 *.log
+*.pdf
 **/_minted-*/
+AllExperiments/
+ComputerGraphics/
+PracticalPractice/
